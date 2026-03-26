@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anatomía Inguinal — Repaso Quirúrgico</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Inconsolata:wght@300;400;500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #13110f;
+    --surface: #1b1814;
+    --surface2: #221e19;
+    --border: #2e2820;
+    --border2: #3d342a;
+    --gold: #c9994a;
+    --gold-dim: #7a5a28;
+    --teal: #5ab8a8;
+    --teal-dim: #2a5a52;
+    --red: #c95a5a;
+    --red-dim: #6a2828;
+    --blue: #5a8ac9;
+    --blue-dim: #2a3a6a;
+    --green: #6ab87a;
+    --green-dim: #2a4a32;
+    --purple: #9a7ac9;
+    --purple-dim: #3a2a6a;
+    --text: #e8e0d4;
+    --muted: #8a7a6a;
+    --dim: #4a3e34;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    min-height: 100vh;
+    padding: 2.5rem 1.25rem 5rem;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 20% 0%, rgba(201,153,74,0.04) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 100%, rgba(90,184,168,0.03) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .wrap {
+    max-width: 920px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ── HEADER ── */
+  header {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    gap: 1rem;
+    margin-bottom: 3rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border2);
+    animation: up 0.6s ease both;
+  }
+
+  .h-eyebrow {
+    font-family: 'Inconsolata', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+  }
+
+  h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 5vw, 3.4rem);
+    font-weight: 400;
+    line-height: 1.05;
+    color: #f0e8dc;
+  }
+
+  h1 em { font-style: italic; color: var(--gold); }
+
+  .h-sub {
+    margin-top: 0.5rem;
+    font-family: 'Inconsolata', monospace;
+    font-size: 0.7rem;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  .h-right {
+    text-align: right;
+    font-family: 'Inconsolata', monospace;
+    font-size: 0.62rem;
+    color: var(--dim);
+    line-height: 2;
+  }
+
+  /* ── NAV TABS ── */
+  .tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-bottom: 2.5rem;
+    animation: up 0.5s ease 0.05s both;
+  }
+
+  .tab {
+    font-family: 'Inconsolata', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.35rem 0.85rem;
+    border: 1px solid var(--border2);
+    border-radius: 3px;
+    background: var(--surface);
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .tab:hover { border-color: var(--gold-dim); color: var(--gold); }
+  .tab.active { border-color: var(--gold); color: var(--gold); background: rgba(201,153,74,0.07); }
+
+  /* ── SECTIONS ── */
+  .section { display: none; animation: up 0.35s ease both; }
+  .section.active { display: block; }
+
+  /* ── SECTION TITLE ── */
+  .sec-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem;
+    font-weight: 400;
+    font-style: italic;
+    color: #f0e8dc;
+    margin-bottom: 0.3rem;
+  }
+
+  .sec-sub {
+    font-family: 'Inconsolata', monospace;
+    font-size: 0.65rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    margin-bottom: 1.75rem;
+  }
+
+  /* ── CARDS ── */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .card-label {
+    font-family: 'Inconsolata', monospace;
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    margin-bottom: 0.75rem;
+  }
+
+  .card-label.gold   { color: var(--gold); }
+  .card-label.teal   { color: var(--teal); }
+  .card-label.red    { color: var(--red); }
+  .card-label.blue   { color: var(--blue); }
+  .card-label.green  { color: var(--green); }
+  .card-label.purple { color: var(--purple); }
+
+  h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #f0e8dc;
+    margin-bottom: 0.5rem;
+  }
+
+  p { font-size: 0.88rem; line-height: 1.75; margin-bottom: 0.5rem; color: var(--text); }
+  p:last-child { margin-bottom: 0; }
+
+  strong { color: #f0e8dc; font-weight: 500; }
+  mark {
+    background: rgba(201,153,74,0.18);
+    color: var(--gold);
+    padding: 0 0.2rem;
+    border-radius: 2px;
+  }
+
+  /* ── LAYER LIST (capas) ── */
+  .layers {
+    counter-reset: layer;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .layer-item {
+    display: grid;
+    grid-template-columns: 2.5rem 1fr auto;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--border);
+    transition: background 0.15s;
+    cursor: default;
+  }
+
+  .layer-item:last-child { border-bottom: none; }
+  .layer-item:hover { background: var(--surface2); }
+
+  .layer-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-style: italic;
+    color: var(--gold);
+    opacity: 0.5;
+    text-align: center;
+    line-height: 1;
+  }
+
+  .layer-name {
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: var(--text);
+  }
+
+  .layer-detail {
+    font-family: 'Inconsolata', monospace;
+    font-size: 0.68rem;
+    color: var(--muted);
+    text-align: right;
+    line-height: 1.5;
+  }
+
+  /* ── STRUCTURE LIST ── */
+  .struct-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 0.75rem;
+  }
+
+  .struct-card {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    padding: 1rem;
+  }
+
+  .struct-card-title {
+    font-family: 'Inconsolata', monospace;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 0.6rem;
+  }
+
+  ul.clean {
+    list-style: none;
+    padding: 0;
+  }
+
+  ul.clean li {
+    padding: 0.25rem 0;
+    padding-left: 1rem;
+    position: relative;
+    font-size: 0.85rem;
+    border-bottom: 1px solid rgba(255,255,255,0.03);
+    line-height: 1.5;
+  }
+
+  ul.clean li:last-child { border-bottom: none; }
+
+  ul.clean li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--dim);
+    font-size: 0.7rem;
+  }
+
+  /* ── TRIANGLE/SPACE DIAGRAM ── */
+  .space-block {
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+  }
+
+  .space-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1.25rem;
+    background: var(--surface2);
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+
+  .space-header:hover { background: rgba(255,255,255,0.03); }
+
+  .space-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    font-style: italic;
+    color: #f0e8dc;
+  }
+
+  .space-badge {
+    font-family: 'Inconsolata', monospace;
+    font-size: 0.6rem;
+    padding: 0.15rem 0.5rem;
+    border-radius: 2px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .space-body {
+    padding: 1.25rem;
+    font-size: 0.87rem;
+  }
+
+  .space-body p { margin-bottom: 0.4rem; }
+
+  .boundary-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.82rem;
+    margin-top: 0.75rem;
+  }
+
+  .boundary-table th {
+    font-family: 'Inconsolata', monospace;
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+    padding: 0.4rem 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .boundary-table td {
+    padding: 0.5rem 0.75rem;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+
+  .boundary-table tr:last-child td { border-bottom: none; }
+
+  .dir-label {
+    font-family: 'Inconsolata', monospace;
+    font-size: 0.65rem;
+    color: var(--muted);
+    min-width: 5rem;
+  }
+
+  /* ── PEARL ── */
+  .pearl {
+    background: rgba(201,153,74,0.06);
+    border: 1px solid rgba(201,153,74,0.2);
+    border-left: 3px solid var(--gold);
+    border-radius: 0 5px 5px 0;
+    padding: 0.75rem 1.1rem;
+    font-size: 0.85rem;
+    margin-top: 1rem;
+    line-height: 1.65;
+  }
+
+  .pearl-label {
+    font-family: 'Inconsolata', monospace;
+    font-size: 0.58rem;
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    margin-bottom: 0.3rem;
+  }
+
+  .pearl.teal {
+    background: rgba(90,184,168,0.06);
+    border-color: rgba(90,184,168,0.2);
+    border-left-color: var(--teal);
+  }
+  .pearl.teal .pearl-label { color: var(--teal); }
+
+  .pearl.red {
+    background: rgba(201,90,90,0.06);
+    border-color: rgba(201,90,90,0.2);
+    border-left-color: var(--red);
+  }
+  .pearl.red .pearl-label { color: var(--red); }
+
+  /* ── SVG DIAGRAM ── */
+  .diagram-wrap {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1.25rem;
+    margin-bottom: 1rem;
+    overflow-x: auto;
+  }
+
+  .diagram-wrap svg { display: block; margin: 0 auto; max-width: 100%; }
+
+  /* ── NERVE TABLE ── */
+  .nerve-row {
+    display: grid;
+    grid-template-columns: 1.5rem 1fr 1fr 1fr;
+    gap: 0.5rem;
+    padding: 0.6rem 0.75rem;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.82rem;
+    align-items: start;
+  }
+
+  .nerve-row:last-child { border-bottom: none; }
+  .nerve-row.header {
+    font-family: 'Inconsolata', monospace;
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    background: var(--surface2);
+    border-radius: 4px 4px 0 0;
+  }
+
+  .nerve-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    margin-top: 0.3rem;
+  }
+
+  /* ── 2-col grid ── */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  @media (max-width: 600px) { .grid2 { grid-template-columns: 1fr; } header { grid-template-columns: 1fr; } }
+
+  /* ── ANIMATIONS ── */
+  @keyframes up {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── DIVIDER ── */
+  hr { border: none; border-top: 1px solid var(--border); margin: 1.25rem 0; }
+
+  /* ── MNEMO BOX ── */
+  .mnemo {
+    background: var(--surface2);
+    border: 1px solid var(--border2);
+    border-radius: 5px;
+    padding: 1rem 1.25rem;
+    font-family: 'Inconsolata', monospace;
+    font-size: 0.82rem;
+    line-height: 2;
+  }
+
+  .mnemo-letter { color: var(--gold); font-size: 1rem; font-weight: 500; }
+  .mnemo-word   { color: var(--text); }
+  .mnemo-desc   { color: var(--muted); font-size: 0.72rem; }
+
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- HEADER -->
+  <header>
+    <div>
+      <div class="h-eyebrow">Anatomía quirúrgica · Cirugía General R1</div>
+      <h1>Región <em>Inguinal</em></h1>
+      <div class="h-sub">
+        Canal inguinal · Triángulos · Espacios · Nervios · Vasos · Relevancia en hernioplastia
+      </div>
+    </div>
+    <div class="h-right">
+      Netter · Skandalakis<br>
+      Gray's Anatomy<br>
+      Shouldice · TEP · TAPP
+    </div>
+  </header>
+
+  <!-- TABS -->
+  <div class="tabs">
+    <div class="tab active" onclick="show('capas',this)">Capas de la pared</div>
+    <div class="tab" onclick="show('canal',this)">Canal inguinal</div>
+    <div class="tab" onclick="show('triangulos',this)">Triángulos & espacios</div>
+    <div class="tab" onclick="show('vasos',this)">Vasos & nervios</div>
+    <div class="tab" onclick="show('contenido',this)">Contenido del cordón</div>
+    <div class="tab" onclick="show('relevancia',this)">Relevancia quirúrgica</div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       TAB 1: CAPAS DE LA PARED ABDOMINAL
+  ══════════════════════════════════════ -->
+  <div id="capas" class="section active">
+    <div class="sec-title">Capas de la pared abdominal</div>
+    <div class="sec-sub">De superficial a profundo · Región inguinal</div>
+
+    <div class="card">
+      <div class="card-label gold">Planos superficiales a profundos</div>
+      <div class="layers">
+        <div class="layer-item">
+          <div class="layer-num">1</div>
+          <div class="layer-name">Piel</div>
+          <div class="layer-detail">Epidermis + dermis</div>
+        </div>
+        <div class="layer-item">
+          <div class="layer-num">2</div>
+          <div class="layer-name">Tejido celular subcutáneo</div>
+          <div class="layer-detail">Fascia de Camper (grasa)<br>Fascia de Scarpa (membranosa)</div>
+        </div>
+        <div class="layer-item">
+          <div class="layer-num">3</div>
+          <div class="layer-name">Aponeurosis del oblicuo externo</div>
+          <div class="layer-detail">Forma la pared anterior del canal<br>Forma el anillo inguinal superficial</div>
+        </div>
+        <div class="layer-item">
+          <div class="layer-num">4</div>
+          <div class="layer-name">Músculo oblicuo interno</div>
+          <div class="layer-detail">Forma techo del canal<br>Fibras forman el músculo cremáster</div>
+        </div>
+        <div class="layer-item">
+          <div class="layer-num">5</div>
+          <div class="layer-name">Músculo transverso del abdomen</div>
+          <div class="layer-detail">Arco del transverso → techo canal<br>Tendón conjunto (con OI) → piso medial</div>
+        </div>
+        <div class="layer-item">
+          <div class="layer-num">6</div>
+          <div class="layer-name">Fascia transversalis</div>
+          <div class="layer-detail">Forma la pared posterior del canal<br>Forma el anillo inguinal profundo</div>
+        </div>
+        <div class="layer-item">
+          <div class="layer-num">7</div>
+          <div class="layer-name">Grasa preperitoneal</div>
+          <div class="layer-detail">Espacio de Bogros / Retzius<br>Clave en abordaje laparoscópico</div>
+        </div>
+        <div class="layer-item">
+          <div class="layer-num">8</div>
+          <div class="layer-name">Peritoneo parietal</div>
+          <div class="layer-detail">Capa más profunda</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pearl">
+      <div class="pearl-label">Perla quirúrgica</div>
+      La <strong>fascia de Scarpa</strong> es la referencia para el plano de disección en hernioplastia abierta anterior. En abordajes laparoscópicos (TEP/TAPP), el plano de trabajo es el <strong>espacio preperitoneal</strong> entre la fascia transversalis y el peritoneo.
+    </div>
+
+    <div class="pearl teal" style="margin-top:0.75rem">
+      <div class="pearl-label">Tendón conjunto (falx inguinalis)</div>
+      Fusión de las aponeurosis del <strong>oblicuo interno + transverso</strong> que se inserta en el tubérculo púbico y la cresta pectínea. Forma el refuerzo medial del piso del canal inguinal. <mark>Presente en ~75% de los casos</mark> — en el resto, los tendones son independientes.
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       TAB 2: CANAL INGUINAL
+  ══════════════════════════════════════ -->
+  <div id="canal" class="section">
+    <div class="sec-title">Canal inguinal</div>
+    <div class="sec-sub">Conducto oblicuo de ~4 cm · De lateral-posterior a medial-anterior</div>
+
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 700 220" xmlns="http://www.w3.org/2000/svg" style="font-family:'Inconsolata',monospace;">
+        <!-- Background -->
+        <rect width="700" height="220" fill="#1b1814"/>
+
+        <!-- Canal shape -->
+        <polygon points="120,60 580,80 580,150 120,170" fill="rgba(201,153,74,0.06)" stroke="#c9994a" stroke-width="1.5"/>
+
+        <!-- Anillo profundo -->
+        <ellipse cx="560" cy="115" rx="22" ry="32" fill="rgba(90,184,168,0.1)" stroke="#5ab8a8" stroke-width="1.5"/>
+        <text x="560" y="168" text-anchor="middle" fill="#5ab8a8" font-size="9">Anillo</text>
+        <text x="560" y="179" text-anchor="middle" fill="#5ab8a8" font-size="9">profundo</text>
+
+        <!-- Anillo superficial -->
+        <polygon points="100,72 145,65 145,175 100,168" fill="rgba(201,90,90,0.1)" stroke="#c95a5a" stroke-width="1.5"/>
+        <text x="72" y="112" text-anchor="middle" fill="#c95a5a" font-size="9">Anillo</text>
+        <text x="72" y="123" text-anchor="middle" fill="#c95a5a" font-size="9">superficial</text>
+
+        <!-- Walls labels -->
+        <!-- Pared anterior -->
+        <line x1="120" y1="55" x2="580" y2="75" stroke="#c9994a" stroke-width="1" stroke-dasharray="4,3"/>
+        <text x="350" y="48" text-anchor="middle" fill="#c9994a" font-size="10">Pared anterior → Aponeurosis oblicuo externo</text>
+
+        <!-- Pared posterior -->
+        <line x1="120" y1="175" x2="580" y2="155" stroke="#5a8ac9" stroke-width="1" stroke-dasharray="4,3"/>
+        <text x="350" y="198" text-anchor="middle" fill="#5a8ac9" font-size="10">Pared posterior → Fascia transversalis + lig. inguinal reflejado</text>
+
+        <!-- Techo -->
+        <text x="350" y="90" text-anchor="middle" fill="#6ab87a" font-size="10">Techo → Oblicuo interno + Transverso (arco muscular)</text>
+
+        <!-- Piso -->
+        <text x="350" y="148" text-anchor="middle" fill="#9a7ac9" font-size="10">Piso → Lig. inguinal + Lig. lacunar (medial)</text>
+
+        <!-- Ligamento inguinal -->
+        <line x1="120" y1="170" x2="580" y2="152" stroke="#9a7ac9" stroke-width="2"/>
+
+        <!-- Direction arrow -->
+        <defs>
+          <marker id="arr" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
+            <path d="M0,0 L8,4 L0,8 Z" fill="#8a7a6a"/>
+          </marker>
+        </defs>
+        <line x1="590" y1="115" x2="615" y2="115" stroke="#8a7a6a" stroke-width="1" marker-end="url(#arr)"/>
+        <text x="625" y="112" fill="#8a7a6a" font-size="8">Lateral</text>
+        <line x1="110" y1="115" x2="85" y2="115" stroke="#8a7a6a" stroke-width="1" marker-end="url(#arr)"/>
+        <text x="50" y="112" fill="#8a7a6a" font-size="8">Medial</text>
+      </svg>
+    </div>
+
+    <div class="grid2">
+      <div class="card">
+        <div class="card-label teal">Paredes — resumen</div>
+        <table class="boundary-table">
+          <thead>
+            <tr><th>Pared</th><th>Estructura</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="dir-label">Anterior</td><td>Aponeurosis del oblicuo externo (en toda su longitud) + fibras del OI lateralmente</td></tr>
+            <tr><td class="dir-label">Posterior</td><td>Fascia transversalis + ligamento inguinal reflejado + tendón conjunto (medialmente)</td></tr>
+            <tr><td class="dir-label">Techo</td><td>Arco del oblicuo interno + transverso del abdomen</td></tr>
+            <tr><td class="dir-label">Piso</td><td>Ligamento inguinal + ligamento lacunar (medialmente)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="card">
+        <div class="card-label red">Anillos inguinales</div>
+        <h3 style="font-size:0.95rem;margin-bottom:0.75rem">Anillo inguinal superficial</h3>
+        <p>Abertura en la aponeurosis del <strong>oblicuo externo</strong>. Limitado por el pilar medial (cresta púbica), pilar lateral (espina ilíaca anterosuperior) y fibras intercrurales superiores. Por aquí emerge el cordón espermático / ligamento redondo.</p>
+        <hr>
+        <h3 style="font-size:0.95rem;margin-bottom:0.75rem;margin-top:0.75rem">Anillo inguinal profundo</h3>
+        <p>Orificio en la <strong>fascia transversalis</strong>, lateral a los vasos epigástricos inferiores. Es el punto de entrada de la hernia inguinal indirecta. La fascia transversalis forma una vaina alrededor del cordón → <strong>fascia espermática interna</strong>.</p>
+      </div>
+    </div>
+
+    <div class="pearl">
+      <div class="pearl-label">Punto clave para hernioplastia</div>
+      El <strong>ligamento de Cooper (pectíneo)</strong> — engrosamiento del periostio del pubis sobre la línea pectínea — es el punto de fijación en la técnica de McVay y en el abordaje laparoscópico (TEP/TAPP). Es la estructura más resistente disponible para la sutura posterior.
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       TAB 3: TRIÁNGULOS Y ESPACIOS
+  ══════════════════════════════════════ -->
+  <div id="triangulos" class="section">
+    <div class="sec-title">Triángulos & espacios</div>
+    <div class="sec-sub">Anatomía topográfica clave para laparoscopía y cirugía abierta</div>
+
+    <!-- Triángulo de Hesselbach -->
+    <div class="space-block">
+      <div class="space-header" onclick="toggleSpace(this)">
+        <span class="space-title">Triángulo de Hesselbach</span>
+        <span class="space-badge" style="background:rgba(201,153,74,0.1);color:var(--gold)">Hernia directa</span>
+      </div>
+      <div class="space-body">
+        <p>Región anatómica que delimita el sitio de salida de las <strong>hernias inguinales directas</strong>. La hernia protruye directamente a través del piso del canal, medial a los vasos epigástricos.</p>
+        <table class="boundary-table">
+          <thead><tr><th>Límite</th><th>Estructura</th></tr></thead>
+          <tbody>
+            <tr><td class="dir-label">Lateral</td><td><strong>Vasos epigástricos inferiores</strong> (arteria y vena)</td></tr>
+            <tr><td class="dir-label">Medial</td><td><strong>Borde lateral del músculo recto abdominal</strong></td></tr>
+            <tr><td class="dir-label">Inferior</td><td><strong>Ligamento inguinal</strong></td></tr>
+          </tbody>
+        </table>
+        <div class="pearl" style="margin-top:0.75rem">
+          <div class="pearl-label">Nemotecnia</div>
+          <strong>"RIL"</strong> — Recto abdominal (medial) · Inferior epigástrica (lateral) · Ligamento inguinal (inferior)
+        </div>
+      </div>
+    </div>
+
+    <!-- Triángulo de dolor (laparoscopía) -->
+    <div class="space-block">
+      <div class="space-header" onclick="toggleSpace(this)">
+        <span class="space-title">Triángulo del dolor</span>
+        <span class="space-badge" style="background:rgba(201,90,90,0.1);color:var(--red)">TEP / TAPP</span>
+      </div>
+      <div class="space-body">
+        <p>Zona lateral al conducto deferente/ligamento redondo, delimitada por el <strong>nervio femoral, nervio femorocutáneo lateral y nervio genitofemoral</strong>. Las grapas o tackers en esta región causan neuralgia crónica postoperatoria.</p>
+        <table class="boundary-table">
+          <thead><tr><th>Límite</th><th>Estructura</th></tr></thead>
+          <tbody>
+            <tr><td class="dir-label">Medial</td><td>Conducto deferente / ligamento redondo</td></tr>
+            <tr><td class="dir-label">Superior</td><td>Vasos ilíacos externos</td></tr>
+            <tr><td class="dir-label">Lateral</td><td>Nervio femorocutáneo lateral</td></tr>
+          </tbody>
+        </table>
+        <div class="pearl red" style="margin-top:0.75rem">
+          <div class="pearl-label">Regla de oro en laparoscopía</div>
+          <strong>No colocar ningún tacker lateral a los vasos espermáticos.</strong> El triángulo del dolor queda lateral e inferior al anillo profundo. La zona segura de fijación es medial y superior.
+        </div>
+      </div>
+    </div>
+
+    <!-- Triángulo de la muerte -->
+    <div class="space-block">
+      <div class="space-header" onclick="toggleSpace(this)">
+        <span class="space-title">Triángulo de la muerte</span>
+        <span class="space-badge" style="background:rgba(201,90,90,0.12);color:var(--red)">Vascular</span>
+      </div>
+      <div class="space-body">
+        <p>Región que contiene los <strong>vasos ilíacos externos</strong>. Su lesión en laparoscopía puede causar hemorragia masiva e inmediata.</p>
+        <table class="boundary-table">
+          <thead><tr><th>Límite</th><th>Estructura</th></tr></thead>
+          <tbody>
+            <tr><td class="dir-label">Medial</td><td>Conducto deferente</td></tr>
+            <tr><td class="dir-label">Lateral</td><td>Vasos espermáticos</td></tr>
+            <tr><td class="dir-label">Contenido</td><td><strong>Arteria y vena ilíacas externas</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Espacio de Bogros / Retzius -->
+    <div class="space-block">
+      <div class="space-header" onclick="toggleSpace(this)">
+        <span class="space-title">Espacio preperitoneal (Bogros / Retzius)</span>
+        <span class="space-badge" style="background:rgba(90,184,168,0.1);color:var(--teal)">TEP · TAPP</span>
+      </div>
+      <div class="space-body">
+        <p>Espacio virtual entre la <strong>fascia transversalis</strong> y el <strong>peritoneo parietal</strong>, lleno de grasa areolar. Es el plano de disección en hernioplastia laparoscópica.</p>
+        <ul class="clean" style="margin-top:0.5rem">
+          <li><strong>Espacio de Retzius:</strong> porción anterior y medial (retropúbico)</li>
+          <li><strong>Espacio de Bogros:</strong> porción lateral, entre la fascia ilíaca y el peritoneo</li>
+          <li>En TEP, se desarrolla con el balón disector desde el ombligo hasta el pubis</li>
+          <li>Contiene: vasos epigástricos, vasos ilíacos, conducto deferente, vasos espermáticos, nervios</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Corona mortis -->
+    <div class="space-block">
+      <div class="space-header" onclick="toggleSpace(this)">
+        <span class="space-title">Corona mortis</span>
+        <span class="space-badge" style="background:rgba(201,90,90,0.1);color:var(--red)">Variante vascular</span>
+      </div>
+      <div class="space-body">
+        <p>Anastomosis entre la <strong>arteria obturatriz</strong> (rama de la ilíaca interna) y los <strong>vasos epigástricos inferiores o ilíacos externos</strong>, que cruza por encima del ligamento de Cooper. Presente en <mark>~30% de los pacientes</mark>.</p>
+        <div class="pearl red" style="margin-top:0.75rem">
+          <div class="pearl-label">Peligro quirúrgico</div>
+          Su lesión inadvertida durante disección en el espacio de Retzius o durante hernioplastia puede causar sangrado difícil de controlar. Identificarla antes de seccionar cualquier estructura sobre el ligamento de Cooper.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       TAB 4: VASOS Y NERVIOS
+  ══════════════════════════════════════ -->
+  <div id="vasos" class="section">
+    <div class="sec-title">Vasos & nervios</div>
+    <div class="sec-sub">Estructuras en riesgo durante hernioplastia abierta y laparoscópica</div>
+
+    <div class="card" style="margin-bottom:1rem">
+      <div class="card-label gold">Vasos principales de la región</div>
+      <div class="struct-grid">
+        <div class="struct-card">
+          <div class="struct-card-title" style="color:var(--red)">Arteria epigástrica inferior</div>
+          <ul class="clean">
+            <li>Rama de la <strong>ilíaca externa</strong></li>
+            <li>Corre medial al anillo inguinal profundo</li>
+            <li>Límite lateral del triángulo de Hesselbach</li>
+            <li>Referencia para distinguir hernia directa (medial) vs indirecta (lateral)</li>
+          </ul>
+        </div>
+        <div class="struct-card">
+          <div class="struct-card-title" style="color:var(--blue)">Vasos ilíacos externos</div>
+          <ul class="clean">
+            <li>Arteria y vena ilíacas externas bajo el ligamento inguinal</li>
+            <li>Pasan bajo el ligamento hacia la laguna vascular</li>
+            <li>Contenidos en el triángulo de la muerte</li>
+            <li>Referencia fija en disección laparoscópica</li>
+          </ul>
+        </div>
+        <div class="struct-card">
+          <div class="struct-card-title" style="color:var(--purple)">Vasos espermáticos / ováricos</div>
+          <ul class="clean">
+            <li>Arteria testicular (rama de la aorta a nivel de L2)</li>
+            <li>Descienden retroperitonealmente → entran al canal por el anillo profundo</li>
+            <li>Forman parte del cordón espermático</li>
+            <li>Límite lateral del triángulo de la muerte</li>
+          </ul>
+        </div>
+        <div class="struct-card">
+          <div class="struct-card-title" style="color:var(--green)">Vasos femorales</div>
+          <ul class="clean">
+            <li>Bajo el ligamento inguinal en la laguna vascular</li>
+            <li>Arteria femoral → medialmente en la vaina femoral</li>
+            <li>Vena femoral → más medial aún</li>
+            <li>El espacio medial vacío = anillo femoral (hernia femoral)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-label teal">Nervios de la región inguinal</div>
+      <div style="background:var(--surface2);border-radius:5px;overflow:hidden">
+        <div class="nerve-row header">
+          <div></div>
+          <div>Nervio</div>
+          <div>Origen</div>
+          <div>Riesgo / Relevancia</div>
+        </div>
+        <div class="nerve-row">
+          <div><div class="nerve-dot" style="background:var(--gold)"></div></div>
+          <div><strong>Ilioinguinal</strong><br><span style="font-size:0.75rem;color:var(--muted)">L1</span></div>
+          <div style="font-size:0.82rem">Plexo lumbar · corre sobre OI dentro del canal inguinal</div>
+          <div style="font-size:0.82rem"><mark>El más lesionado</mark> en herniorrafia abierta. Lesión → hipoestesia/dolor cara medial muslo + escroto/labio mayor</div>
+        </div>
+        <div class="nerve-row">
+          <div><div class="nerve-dot" style="background:var(--teal)"></div></div>
+          <div><strong>Iliohipogástrico</strong><br><span style="font-size:0.75rem;color:var(--muted)">L1</span></div>
+          <div style="font-size:0.82rem">Plexo lumbar · corre entre OI y transverso, medial al ilioinguinal</div>
+          <div style="font-size:0.82rem">Lesión → hipoestesia suprapúbica e inguinal medial</div>
+        </div>
+        <div class="nerve-row">
+          <div><div class="nerve-dot" style="background:var(--red)"></div></div>
+          <div><strong>Genitofemoral</strong><br><span style="font-size:0.75rem;color:var(--muted)">L1-L2</span></div>
+          <div style="font-size:0.82rem">Rama genital: cordón espermático<br>Rama femoral: laguna vascular</div>
+          <div style="font-size:0.82rem">Lesión → reflejo cremastérico abolido. En laparoscopía: no colocar tackers lateralmente</div>
+        </div>
+        <div class="nerve-row">
+          <div><div class="nerve-dot" style="background:var(--blue)"></div></div>
+          <div><strong>Femorocutáneo lateral</strong><br><span style="font-size:0.75rem;color:var(--muted)">L2-L3</span></div>
+          <div style="font-size:0.82rem">Pasa bajo el lig. inguinal medial a la EIAS</div>
+          <div style="font-size:0.82rem">Lesión → meralgia parestésica (cara anterolateral muslo). En laparoscopía: triángulo del dolor</div>
+        </div>
+        <div class="nerve-row" style="border-bottom:none">
+          <div><div class="nerve-dot" style="background:var(--green)"></div></div>
+          <div><strong>Femoral</strong><br><span style="font-size:0.75rem;color:var(--muted)">L2-L4</span></div>
+          <div style="font-size:0.82rem">Laguna muscular, lateral a los vasos femorales, bajo el lig. inguinal</div>
+          <div style="font-size:0.82rem">Lesión → debilidad cuádriceps. Raro en hernioplastia, más en endarterectomía femoral</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pearl">
+      <div class="pearl-label">Perla quirúrgica — hernioplastia abierta</div>
+      Al abrir la aponeurosis del oblicuo externo, el <strong>nervio ilioinguinal</strong> se encuentra justo debajo, sobre el cordón espermático. Se debe identificar, retraer con cuidado y preservar. La neurectomía profiláctica es controversial — algunos grupos la practican para prevenir dolor crónico.
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       TAB 5: CONTENIDO DEL CORDÓN
+  ══════════════════════════════════════ -->
+  <div id="contenido" class="section">
+    <div class="sec-title">Contenido del cordón espermático</div>
+    <div class="sec-sub">3 arterias · 3 nervios · 3 otras estructuras · Mnemotecnia clásica</div>
+
+    <div class="card">
+      <div class="card-label gold">Nemotecnia: "3 × 3 × 3"</div>
+      <div class="grid2">
+
+        <div>
+          <div class="mnemo" style="margin-bottom:0.75rem">
+            <div style="font-family:'Inconsolata',monospace;font-size:0.6rem;text-transform:uppercase;letter-spacing:0.15em;color:var(--muted);margin-bottom:0.5rem">3 Arterias</div>
+            <div style="margin-bottom:0.3rem"><span class="mnemo-letter">1 </span><span class="mnemo-word">Arteria testicular</span> <span class="mnemo-desc">— rama de la aorta (L2)</span></div>
+            <div style="margin-bottom:0.3rem"><span class="mnemo-letter">2 </span><span class="mnemo-word">Arteria cremastérica</span> <span class="mnemo-desc">— rama de la epigástrica inferior</span></div>
+            <div><span class="mnemo-letter">3 </span><span class="mnemo-word">Arteria del conducto deferente</span> <span class="mnemo-desc">— rama de la vesical inferior</span></div>
+          </div>
+
+          <div class="mnemo" style="margin-bottom:0.75rem">
+            <div style="font-family:'Inconsolata',monospace;font-size:0.6rem;text-transform:uppercase;letter-spacing:0.15em;color:var(--muted);margin-bottom:0.5rem">3 Nervios</div>
+            <div style="margin-bottom:0.3rem"><span class="mnemo-letter">1 </span><span class="mnemo-word">Rama genital del genitofemoral</span> <span class="mnemo-desc">— motor del cremáster</span></div>
+            <div style="margin-bottom:0.3rem"><span class="mnemo-letter">2 </span><span class="mnemo-word">Nervio ilioinguinal</span> <span class="mnemo-desc">— sensitivo</span></div>
+            <div><span class="mnemo-letter">3 </span><span class="mnemo-word">Plexo simpático perivascular</span> <span class="mnemo-desc">— vasomotor</span></div>
+          </div>
+        </div>
+
+        <div>
+          <div class="mnemo">
+            <div style="font-family:'Inconsolata',monospace;font-size:0.6rem;text-transform:uppercase;letter-spacing:0.15em;color:var(--muted);margin-bottom:0.5rem">3 Otras estructuras</div>
+            <div style="margin-bottom:0.3rem"><span class="mnemo-letter">1 </span><span class="mnemo-word">Conducto deferente</span> <span class="mnemo-desc">— estructura más posterior</span></div>
+            <div style="margin-bottom:0.3rem"><span class="mnemo-letter">2 </span><span class="mnemo-word">Plexo venoso pampiniforme</span> <span class="mnemo-desc">— drena al testículo</span></div>
+            <div style="margin-bottom:0.3rem"><span class="mnemo-letter">3 </span><span class="mnemo-word">Músculo cremáster</span> <span class="mnemo-desc">— fibras del oblicuo interno</span></div>
+          </div>
+
+          <div class="pearl teal" style="margin-top:0.75rem">
+            <div class="pearl-label">Ligamento redondo (mujer)</div>
+            En la mujer el canal inguinal contiene el <strong>ligamento redondo del útero</strong> en lugar del cordón espermático. Se secciona sin consecuencias funcionales relevantes durante hernioplastia.
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:1rem">
+      <div class="card-label red">Coberturas del cordón espermático</div>
+      <p>El cordón espermático adquiere sus cubiertas al pasar por el canal inguinal, de adentro hacia afuera:</p>
+      <div class="layers" style="margin-top:0.5rem">
+        <div class="layer-item">
+          <div class="layer-num">1</div>
+          <div class="layer-name">Fascia espermática interna</div>
+          <div class="layer-detail">Derivada de la fascia transversalis<br>Adquirida en el anillo profundo</div>
+        </div>
+        <div class="layer-item">
+          <div class="layer-num">2</div>
+          <div class="layer-name">Músculo cremáster + fascia cremastérica</div>
+          <div class="layer-detail">Derivada del oblicuo interno<br>Reflejo cremastérico (L1-L2)</div>
+        </div>
+        <div class="layer-item" style="border-bottom:none">
+          <div class="layer-num">3</div>
+          <div class="layer-name">Fascia espermática externa</div>
+          <div class="layer-detail">Derivada de la aponeurosis del oblicuo externo<br>Adquirida en el anillo superficial</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       TAB 6: RELEVANCIA QUIRÚRGICA
+  ══════════════════════════════════════ -->
+  <div id="relevancia" class="section">
+    <div class="sec-title">Relevancia quirúrgica</div>
+    <div class="sec-sub">Clasificación de hernias · Técnicas · Zonas de riesgo</div>
+
+    <div class="card">
+      <div class="card-label gold">Clasificación anatómica de hernias inguinales</div>
+      <div class="struct-grid">
+        <div class="struct-card">
+          <div class="struct-card-title" style="color:var(--teal)">Indirecta (lateral)</div>
+          <ul class="clean">
+            <li>Sale por el <strong>anillo inguinal profundo</strong></li>
+            <li><strong>Lateral</strong> a los vasos epigástricos inferiores</li>
+            <li>Sigue el trayecto del cordón espermático</li>
+            <li>Puede descender al escroto</li>
+            <li>Más frecuente en jóvenes y niños</li>
+            <li>Tiene saco peritoneal propio</li>
+          </ul>
+        </div>
+        <div class="struct-card">
+          <div class="struct-card-title" style="color:var(--red)">Directa (medial)</div>
+          <ul class="clean">
+            <li>Sale a través del <strong>triángulo de Hesselbach</strong></li>
+            <li><strong>Medial</strong> a los vasos epigástricos inferiores</li>
+            <li>No sigue el trayecto del cordón</li>
+            <li>Rara vez desciende al escroto</li>
+            <li>Más frecuente en adultos mayores</li>
+            <li>Debilidad de la fascia transversalis</li>
+          </ul>
+        </div>
+        <div class="struct-card">
+          <div class="struct-card-title" style="color:var(--purple)">Femoral</div>
+          <ul class="clean">
+            <li>Sale por el <strong>anillo femoral</strong> (canal femoral)</li>
+            <li>Medial a la vena femoral</li>
+            <li>Inferior al ligamento inguinal</li>
+            <li>Más frecuente en mujeres</li>
+            <li><mark>Alto riesgo de estrangulación</mark></li>
+            <li>Siempre quirúrgica</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:1rem">
+      <div class="card-label blue">Técnicas de hernioplastia — anatomía relevante por abordaje</div>
+      <div class="struct-grid">
+        <div class="struct-card">
+          <div class="struct-card-title" style="color:var(--gold)">Lichtenstein (abierta sin tensión)</div>
+          <ul class="clean">
+            <li>Malla plana sobre el piso del canal</li>
+            <li>Fijación al <strong>ligamento inguinal</strong> inferiormente</li>
+            <li>Fijación al <strong>tendón conjunto</strong> superiormente</li>
+            <li>Orificio en la malla para el cordón</li>
+            <li>Riesgo: nervio ilioinguinal y genitofemoral</li>
+          </ul>
+        </div>
+        <div class="struct-card">
+          <div class="struct-card-title" style="color:var(--teal)">TEP (totalmente extraperitoneal)</div>
+          <ul class="clean">
+            <li>Disección en espacio preperitoneal</li>
+            <li>Malla cubre el miopectíneo de Fruchaud</li>
+            <li>Fijación al <strong>ligamento de Cooper</strong></li>
+            <li>No entrar al peritoneo</li>
+            <li>Evitar triángulo del dolor y de la muerte</li>
+          </ul>
+        </div>
+        <div class="struct-card">
+          <div class="struct-card-title" style="color:var(--blue)">TAPP (transabdominal preperitoneal)</div>
+          <ul class="clean">
+            <li>Acceso transperitoneal → disección preperitoneal</li>
+            <li>Misma cobertura anatómica que TEP</li>
+            <li>Cierre del peritoneo al final</li>
+            <li>Mayor visualización de estructuras</li>
+            <li>Mismos riesgos vasculares y nerviosos</li>
+          </ul>
+        </div>
+        <div class="struct-card">
+          <div class="struct-card-title" style="color:var(--purple)">Orificio miopectíneo de Fruchaud</div>
+          <ul class="clean">
+            <li>Concepto clave para laparoscopía</li>
+            <li>Zona débil de la pared posterior cubierta solo por fascia transversalis</li>
+            <li>Contiene: anillo profundo, triángulo de Hesselbach, anillo femoral</li>
+            <li>La malla laparoscópica debe cubrirlo completamente (≥ 10×15 cm)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="pearl" style="margin-top:1rem">
+      <div class="pearl-label">Regla de los 3 cm en laparoscopía</div>
+      La malla debe quedar a <strong>≥ 3 cm</strong> más allá de cada borde del defecto herniario. Una malla insuficientemente grande es la causa más frecuente de recidiva en TEP/TAPP.
+    </div>
+
+    <div class="pearl red" style="margin-top:0.75rem">
+      <div class="pearl-label">Zonas absolutamente prohibidas para tackers</div>
+      <strong>Triángulo del dolor</strong> (lateral al cordón — nervios femorocutáneo, femoral, genitofemoral) y <strong>triángulo de la muerte</strong> (vasos ilíacos externos). La fijación de la malla solo es segura en la zona medial: ligamento de Cooper, tendón conjunto y línea media.
+    </div>
+  </div>
+
+</div>
+
+<script>
+  function show(id, el) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    el.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function toggleSpace(header) {
+    const body = header.nextElementSibling;
+    body.style.display = body.style.display === 'none' ? 'block' : 'none';
+  }
+</script>
+</body>
+</html>
