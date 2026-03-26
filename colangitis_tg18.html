@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Colangitis Aguda — TG18</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&family=IBM+Plex+Sans:wght@300;400;600&display=swap');
+
+  :root {
+    --bg: #0a0e17;
+    --surface: #111827;
+    --border: #1e2d40;
+    --green: #00d4aa;
+    --yellow: #f5a623;
+    --red: #ff4757;
+    --blue: #4a9eff;
+    --text: #e2e8f0;
+    --muted: #64748b;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'IBM Plex Sans', sans-serif;
+    min-height: 100vh;
+    padding: 2rem 1rem;
+  }
+
+  .container { max-width: 900px; margin: 0 auto; }
+
+  header {
+    border-left: 3px solid var(--green);
+    padding-left: 1.2rem;
+    margin-bottom: 2.5rem;
+    animation: fadeIn 0.6s ease;
+  }
+
+  header .label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--green);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 0.3rem;
+  }
+
+  header h1 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+
+  header p {
+    color: var(--muted);
+    font-size: 0.85rem;
+    margin-top: 0.3rem;
+    font-family: 'IBM Plex Mono', monospace;
+  }
+
+  /* DIAGNOSTIC CRITERIA */
+  .section-title {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .diagnostic-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+    animation: fadeIn 0.7s ease 0.1s both;
+  }
+
+  .diag-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem;
+  }
+
+  .diag-card .letter {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--blue);
+    margin-bottom: 0.3rem;
+  }
+
+  .diag-card .name {
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 0.6rem;
+    color: var(--text);
+  }
+
+  .diag-card ul {
+    list-style: none;
+    font-size: 0.75rem;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  .diag-card ul li::before { content: "→ "; color: var(--blue); }
+
+  .diag-rule {
+    background: #0d1a2a;
+    border: 1px solid var(--blue);
+    border-radius: 6px;
+    padding: 0.7rem 1rem;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.75rem;
+    margin-bottom: 2.5rem;
+    color: var(--blue);
+    animation: fadeIn 0.7s ease 0.2s both;
+  }
+
+  /* SEVERITY GRADES */
+  .grades-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+    animation: fadeIn 0.7s ease 0.3s both;
+  }
+
+  .grade-card {
+    border-radius: 10px;
+    padding: 1.2rem;
+    border: 1px solid;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .grade-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+  }
+
+  .grade-I { border-color: #1a3a2a; background: #0d1f16; }
+  .grade-I::before { background: var(--green); }
+  .grade-I .grade-num { color: var(--green); }
+
+  .grade-II { border-color: #3a2a0d; background: #1f1700; }
+  .grade-II::before { background: var(--yellow); }
+  .grade-II .grade-num { color: var(--yellow); }
+
+  .grade-III { border-color: #3a0d0d; background: #1f0000; }
+  .grade-III::before { background: var(--red); }
+  .grade-III .grade-num { color: var(--red); }
+
+  .grade-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
+  }
+
+  .grade-badge {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.6rem;
+    border-radius: 20px;
+    display: inline-block;
+    margin-bottom: 0.8rem;
+    font-weight: 600;
+  }
+
+  .grade-I .grade-badge { background: #0d3a22; color: var(--green); }
+  .grade-II .grade-badge { background: #3a2500; color: var(--yellow); }
+  .grade-III .grade-badge { background: #3a0000; color: var(--red); }
+
+  .grade-criteria {
+    font-size: 0.73rem;
+    line-height: 1.6;
+    color: var(--muted);
+  }
+
+  .grade-criteria li { list-style: none; margin-bottom: 0.3rem; }
+  .grade-I .grade-criteria li::before { content: "✓ "; color: var(--green); }
+  .grade-II .grade-criteria li::before { content: "⚠ "; color: var(--yellow); }
+  .grade-III .grade-criteria li::before { content: "✕ "; color: var(--red); }
+
+  .grade-rule {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem;
+    margin-top: 0.8rem;
+    padding-top: 0.8rem;
+    border-top: 1px solid var(--border);
+  }
+
+  /* MANAGEMENT TABLE */
+  .mgmt-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-bottom: 2.5rem;
+    animation: fadeIn 0.7s ease 0.4s both;
+    font-size: 0.78rem;
+  }
+
+  .mgmt-table th {
+    background: #111827;
+    padding: 0.7rem 1rem;
+    text-align: left;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .mgmt-table th:first-child { border-radius: 8px 0 0 0; }
+  .mgmt-table th:last-child { border-radius: 0 8px 0 0; }
+
+  .mgmt-table td {
+    padding: 0.9rem 1rem;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+
+  .mgmt-table tr:last-child td { border-bottom: none; }
+  .mgmt-table tr:hover td { background: #111827; }
+
+  .tag {
+    display: inline-block;
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem;
+    font-weight: 600;
+    margin-right: 0.3rem;
+  }
+
+  .tag-green { background: #0d3a22; color: var(--green); }
+  .tag-yellow { background: #3a2500; color: var(--yellow); }
+  .tag-red { background: #3a0000; color: var(--red); }
+
+  /* ANTIBIOTICS */
+  .abx-section { animation: fadeIn 0.7s ease 0.5s both; margin-bottom: 2.5rem; }
+
+  .abx-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+  .abx-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem;
+  }
+
+  .abx-card .abx-title {
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.8rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .abx-card.low .abx-title { color: var(--green); }
+  .abx-card.high .abx-title { color: var(--red); }
+
+  .abx-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    margin-bottom: 0.6rem;
+    font-size: 0.75rem;
+  }
+
+  .abx-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    margin-top: 0.35rem;
+    flex-shrink: 0;
+  }
+
+  .low .abx-dot { background: var(--green); }
+  .high .abx-dot { background: var(--red); }
+
+  .abx-name { font-weight: 600; color: var(--text); }
+  .abx-dose { color: var(--muted); font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; }
+
+  .abx-alt {
+    margin-top: 0.8rem;
+    padding-top: 0.8rem;
+    border-top: 1px solid var(--border);
+    font-size: 0.7rem;
+    color: var(--muted);
+  }
+
+  footer {
+    text-align: center;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--muted);
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 600px) {
+    .diagnostic-grid, .grades-grid, .abx-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <div class="label">Referencia clínica rápida</div>
+    <h1>Colangitis Aguda — TG18</h1>
+    <p>Tokyo Guidelines 2018 · Kiriyama et al. · J Hepatobiliary Pancreat Sci</p>
+  </header>
+
+  <!-- DIAGNOSTIC CRITERIA -->
+  <div class="section-title">Criterios diagnósticos</div>
+  <div class="diagnostic-grid">
+    <div class="diag-card">
+      <div class="letter">A</div>
+      <div class="name">Inflamación sistémica</div>
+      <ul>
+        <li>Fiebre / escalofríos</li>
+        <li>PCR elevada</li>
+        <li>Leucocitosis</li>
+      </ul>
+    </div>
+    <div class="diag-card">
+      <div class="letter">B</div>
+      <div class="name">Colestasis</div>
+      <ul>
+        <li>Ictericia (BT ≥ 2 mg/dL)</li>
+        <li>FA / GGT / TGO / TGP elevadas</li>
+      </ul>
+    </div>
+    <div class="diag-card">
+      <div class="letter">C</div>
+      <div class="name">Imagen</div>
+      <ul>
+        <li>Dilatación de vía biliar</li>
+        <li>Causa obstructiva (lito, estenosis, etc.)</li>
+      </ul>
+    </div>
+  </div>
+  <div class="diag-rule">
+    Sospecha: 1 criterio A + 1 criterio B o C &nbsp;|&nbsp; Definitivo: 1A + 1B + 1C
+  </div>
+
+  <!-- SEVERITY -->
+  <div class="section-title">Clasificación de severidad</div>
+  <div class="grades-grid">
+    <div class="grade-card grade-I">
+      <div class="grade-num">Grado I</div>
+      <div class="grade-badge">Leve</div>
+      <ul class="grade-criteria">
+        <li>No cumple criterios de Grado II ni III</li>
+        <li>Responde a tratamiento médico inicial</li>
+      </ul>
+      <div class="grade-rule" style="color: var(--green);">Sin criterios de moderado/grave</div>
+    </div>
+
+    <div class="grade-card grade-II">
+      <div class="grade-num">Grado II</div>
+      <div class="grade-badge">Moderado</div>
+      <ul class="grade-criteria">
+        <li>WBC &gt;12,000 o &lt;4,000/mm³</li>
+        <li>Fiebre ≥ 39°C</li>
+        <li>Edad ≥ 75 años</li>
+        <li>BT ≥ 5 mg/dL</li>
+        <li>Hipoalbuminemia (&lt; STD × 0.7)</li>
+      </ul>
+      <div class="grade-rule" style="color: var(--yellow);">≥ 2 criterios de los anteriores</div>
+    </div>
+
+    <div class="grade-card grade-III">
+      <div class="grade-num">Grado III</div>
+      <div class="grade-badge">Grave</div>
+      <ul class="grade-criteria">
+        <li>Cardiovascular: vasopresores</li>
+        <li>Neurológico: alteración consciencia</li>
+        <li>Respiratorio: PaO₂/FiO₂ &lt;300</li>
+        <li>Renal: Cr &gt;2.0 mg/dL u oliguria</li>
+        <li>Hepático: PT-INR &gt;1.5</li>
+        <li>Hematológico: plaquetas &lt;100k</li>
+      </ul>
+      <div class="grade-rule" style="color: var(--red);">≥ 1 falla orgánica</div>
+    </div>
+  </div>
+
+  <!-- MANAGEMENT -->
+  <div class="section-title">Manejo según severidad</div>
+  <table class="mgmt-table">
+    <thead>
+      <tr>
+        <th>Grado</th>
+        <th>ATB empírico</th>
+        <th>Drenaje biliar</th>
+        <th>Método preferido</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="tag tag-green">I · Leve</span></td>
+        <td>Pip-tazo 4.5g IV c/8h<br><span style="color:var(--muted); font-size:0.7rem">o Ertapenem 1g IV c/24h</span></td>
+        <td>Electivo<br><span style="color:var(--muted); font-size:0.7rem">24–72h o diferido si responde</span></td>
+        <td>CPRE + esfinterotomía</td>
+      </tr>
+      <tr>
+        <td><span class="tag tag-yellow">II · Moderado</span></td>
+        <td>Pip-tazo 4.5g IV c/8h<br><span style="color:var(--muted); font-size:0.7rem">Escalar si no responde en 24h</span></td>
+        <td>Temprano<br><span style="color:var(--muted); font-size:0.7rem">Dentro de 24h si no responde a ATB</span></td>
+        <td>CPRE + esfinterotomía</td>
+      </tr>
+      <tr>
+        <td><span class="tag tag-red">III · Grave</span></td>
+        <td>Meropenem 1g IV c/8h<br><span style="color:var(--muted); font-size:0.7rem">o Imipenem 0.5g IV c/6h</span></td>
+        <td>Urgente<br><span style="color:var(--muted); font-size:0.7rem">Lo antes posible + estabilización simultánea</span></td>
+        <td>CPRE / PTBD si CPRE no posible</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ANTIBIOTICS -->
+  <div class="section-title">Antibióticos — detalle (Sanford + TG18)</div>
+  <div class="abx-section">
+    <div class="abx-grid">
+      <div class="abx-card low">
+        <div class="abx-title">Bajo riesgo · Comunitario (Grado I–II)</div>
+        <div class="abx-item">
+          <div class="abx-dot"></div>
+          <div>
+            <div class="abx-name">Piperacilina-tazobactam</div>
+            <div class="abx-dose">4.5 g IV c/8h (infusión en 4h)</div>
+          </div>
+        </div>
+        <div class="abx-item">
+          <div class="abx-dot"></div>
+          <div>
+            <div class="abx-name">Ertapenem</div>
+            <div class="abx-dose">1 g IV c/24h</div>
+          </div>
+        </div>
+        <div class="abx-alt">
+          Alternativas: Ceftriaxona 2g c/24h + Metronidazol 1g carga → 0.5g c/8h<br>
+          Alergia betalactámicos: Ciprofloxacino 400mg c/12h o Levofloxacino 750mg c/24h + Metronidazol
+        </div>
+      </div>
+
+      <div class="abx-card high">
+        <div class="abx-title">Alto riesgo · Nosocomial / Grado III</div>
+        <div class="abx-item">
+          <div class="abx-dot"></div>
+          <div>
+            <div class="abx-name">Meropenem</div>
+            <div class="abx-dose">1 g IV c/8h</div>
+          </div>
+        </div>
+        <div class="abx-item">
+          <div class="abx-dot"></div>
+          <div>
+            <div class="abx-name">Imipenem-cilastatina</div>
+            <div class="abx-dose">0.5 g IV c/6h</div>
+          </div>
+        </div>
+        <div class="abx-alt">
+          Healthcare-associated: Cefepime 2g c/8h + Metronidazol<br>
+          Gérmenes target: E. coli, Klebsiella, Enterococcus, Bacteroides
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>TG18 · Kiriyama et al. 2018 · doi:10.1002/jhbp.511 &nbsp;|&nbsp; Sanford Guide · Uso clínico interno</footer>
+
+</div>
+</body>
+</html>
