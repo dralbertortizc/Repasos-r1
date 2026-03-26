@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Síndrome de Lemmel — Repaso Clínico</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Libre+Franklin:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0e0f13;
+    --surface: #16181f;
+    --surface2: #1e2029;
+    --border: #2a2d3a;
+    --accent: #c9a84c;
+    --accent2: #7eb8c9;
+    --accent3: #c97b5a;
+    --text: #dde1ec;
+    --muted: #737891;
+    --green: #6dbf8f;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Libre Franklin', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    min-height: 100vh;
+    padding: 2rem 1rem 4rem;
+  }
+
+  /* Grain overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.6;
+  }
+
+  .wrapper {
+    max-width: 860px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Header */
+  header {
+    border-left: 3px solid var(--accent);
+    padding-left: 1.5rem;
+    margin-bottom: 3rem;
+    animation: fadeDown 0.6s ease both;
+  }
+
+  .label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--accent);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 0.4rem;
+  }
+
+  h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    line-height: 1.1;
+    color: #fff;
+    font-weight: 400;
+  }
+
+  h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .subtitle {
+    margin-top: 0.6rem;
+    font-size: 0.85rem;
+    color: var(--muted);
+    font-family: 'DM Mono', monospace;
+  }
+
+  /* Section */
+  section {
+    margin-bottom: 2rem;
+    animation: fadeUp 0.5s ease both;
+  }
+
+  section:nth-child(2) { animation-delay: 0.05s; }
+  section:nth-child(3) { animation-delay: 0.1s; }
+  section:nth-child(4) { animation-delay: 0.15s; }
+  section:nth-child(5) { animation-delay: 0.2s; }
+  section:nth-child(6) { animation-delay: 0.25s; }
+  section:nth-child(7) { animation-delay: 0.3s; }
+  section:nth-child(8) { animation-delay: 0.35s; }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .section-header:hover h2 { color: var(--accent); }
+
+  .section-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--muted);
+    min-width: 1.8rem;
+  }
+
+  h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: var(--text);
+    transition: color 0.2s;
+    flex: 1;
+  }
+
+  .toggle-icon {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--muted);
+    transition: transform 0.3s;
+  }
+
+  .section-body {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1.25rem 1.5rem;
+    overflow: hidden;
+    transition: max-height 0.4s ease, opacity 0.3s ease;
+  }
+
+  .section-body.collapsed {
+    max-height: 0 !important;
+    opacity: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .toggle-icon.rotated { transform: rotate(180deg); }
+
+  /* Cards grid */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+  }
+
+  .card {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    padding: 0.9rem 1rem;
+  }
+
+  .card-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 0.35rem;
+  }
+
+  .card-value {
+    font-size: 0.9rem;
+    color: var(--text);
+  }
+
+  /* Highlight tags */
+  .tag {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    padding: 0.15rem 0.5rem;
+    border-radius: 3px;
+    margin: 0.1rem 0.15rem 0.1rem 0;
+    letter-spacing: 0.05em;
+  }
+
+  .tag-gold { background: rgba(201,168,76,0.15); color: var(--accent); border: 1px solid rgba(201,168,76,0.3); }
+  .tag-blue { background: rgba(126,184,201,0.12); color: var(--accent2); border: 1px solid rgba(126,184,201,0.25); }
+  .tag-red  { background: rgba(201,123,90,0.12);  color: var(--accent3); border: 1px solid rgba(201,123,90,0.25); }
+  .tag-green { background: rgba(109,191,143,0.12); color: var(--green); border: 1px solid rgba(109,191,143,0.25); }
+
+  /* Lists */
+  ul.styled {
+    list-style: none;
+    padding: 0;
+  }
+
+  ul.styled li {
+    padding: 0.3rem 0;
+    padding-left: 1.2rem;
+    position: relative;
+    font-size: 0.88rem;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+
+  ul.styled li:last-child { border-bottom: none; }
+
+  ul.styled li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--muted);
+    font-size: 0.75rem;
+  }
+
+  /* Fisiopatología numbered */
+  .fisio-item {
+    display: flex;
+    gap: 1rem;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+
+  .fisio-item:last-child { border-bottom: none; }
+
+  .fisio-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.6rem;
+    color: var(--accent);
+    opacity: 0.35;
+    line-height: 1;
+    min-width: 2rem;
+  }
+
+  .fisio-text { font-size: 0.88rem; padding-top: 0.1rem; }
+
+  .fisio-text strong { color: var(--accent2); font-weight: 600; }
+
+  /* Clasificación Boix table */
+  .boix-grid {
+    display: grid;
+    grid-template-columns: auto 1fr 1fr;
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    overflow: hidden;
+    font-size: 0.85rem;
+  }
+
+  .boix-cell {
+    padding: 0.6rem 0.9rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .boix-cell:nth-child(3n) { border-right: none; }
+  .boix-cell.header {
+    background: var(--surface2);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .tipo-badge {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--accent);
+  }
+
+  /* Noda grid */
+  .noda-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.6rem;
+    margin-top: 0.5rem;
+  }
+
+  .noda-card {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    padding: 0.75rem 1rem;
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+  }
+
+  .noda-letter {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.8rem;
+    color: var(--accent2);
+    opacity: 0.5;
+    line-height: 1;
+  }
+
+  .noda-desc { font-size: 0.83rem; padding-top: 0.2rem; }
+
+  /* Sub-Noda */
+  .subnoda {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+  }
+
+  .subnoda-item {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.8rem;
+  }
+
+  .subnoda-item code {
+    font-family: 'DM Mono', monospace;
+    color: var(--accent3);
+    font-size: 0.75rem;
+  }
+
+  /* Dx flow */
+  .dx-flow {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .dx-step {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    padding: 0.65rem 1rem;
+    font-size: 0.87rem;
+  }
+
+  .dx-icon {
+    font-size: 1rem;
+    min-width: 1.5rem;
+    text-align: center;
+  }
+
+  .dx-arrow {
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.75rem;
+  }
+
+  .gold-standard {
+    border-color: rgba(201,168,76,0.4);
+    background: rgba(201,168,76,0.06);
+  }
+
+  /* Tx section */
+  .tx-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0.75rem;
+  }
+
+  .tx-card {
+    border-radius: 5px;
+    padding: 1rem;
+    font-size: 0.85rem;
+  }
+
+  .tx-card.expectante { background: rgba(109,191,143,0.08); border: 1px solid rgba(109,191,143,0.25); }
+  .tx-card.endo { background: rgba(126,184,201,0.08); border: 1px solid rgba(126,184,201,0.25); }
+  .tx-card.qx { background: rgba(201,123,90,0.08); border: 1px solid rgba(201,123,90,0.25); }
+
+  .tx-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 0.5rem;
+  }
+
+  .tx-card.expectante .tx-title { color: var(--green); }
+  .tx-card.endo .tx-title { color: var(--accent2); }
+  .tx-card.qx .tx-title { color: var(--accent3); }
+
+  ul.tx-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  ul.tx-list li {
+    padding: 0.2rem 0;
+    padding-left: 1rem;
+    position: relative;
+    font-size: 0.83rem;
+  }
+
+  ul.tx-list li::before {
+    content: '·';
+    position: absolute;
+    left: 0;
+    color: var(--muted);
+  }
+
+  /* Pearl boxes */
+  .pearl {
+    background: rgba(201,168,76,0.07);
+    border: 1px solid rgba(201,168,76,0.2);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 5px 5px 0;
+    padding: 0.75rem 1rem;
+    font-size: 0.85rem;
+    margin-top: 0.75rem;
+  }
+
+  .pearl-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-bottom: 0.3rem;
+  }
+
+  /* Inline highlight */
+  mark {
+    background: rgba(201,168,76,0.2);
+    color: var(--accent);
+    padding: 0 0.2rem;
+    border-radius: 2px;
+  }
+
+  strong { color: #fff; font-weight: 600; }
+
+  p { font-size: 0.88rem; margin-bottom: 0.5rem; }
+
+  /* Animations */
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  hr.divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 1rem 0;
+  }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <header>
+    <div class="label">Repaso clínico · Cirugía General R1</div>
+    <h1><em>Síndrome de Lemmel</em><br>& Clasificación de Boix</h1>
+    <div class="subtitle">Divertículos duodenales periampulares · Ictericia obstructiva intermitente</div>
+  </header>
+
+  <!-- 1. Definición -->
+  <section>
+    <div class="section-header" onclick="toggle(this)">
+      <span class="section-num">01</span>
+      <h2>Definición</h2>
+      <span class="toggle-icon">▾</span>
+    </div>
+    <div class="section-body">
+      <p><strong>Divertículo periampular (DDP):</strong> Protrusión sacular de la pared duodenal localizada en un radio de <mark>2–3 cm de la ampolla de Váter</mark>. Casi siempre son <strong>pseudodivertículos</strong> (mucosa + submucosa, sin capa muscular propia), adquiridos por debilidad en los sitios donde penetran vasos y conductos.</p>
+      <p><strong>Síndrome de Lemmel:</strong> Ictericia obstructiva producida por un DDP en <mark>ausencia de coledocolitiasis</mark>, tumores o patología pancreato-biliar. Se presenta como ictericia obstructiva intermitente — rasgo clínico definitorio.</p>
+      <div class="grid" style="margin-top:0.75rem">
+        <div class="card">
+          <div class="card-label">Frecuencia DDP</div>
+          <div class="card-value">75% de todos los divertículos duodenales son periampulares</div>
+        </div>
+        <div class="card">
+          <div class="card-label">Localización</div>
+          <div class="card-value">2ª y 3ª porción del duodeno · 2° sitio más frecuente en TGI después del colon</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. Epidemiología -->
+  <section>
+    <div class="section-header" onclick="toggle(this)">
+      <span class="section-num">02</span>
+      <h2>Epidemiología</h2>
+      <span class="toggle-icon">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="grid">
+        <div class="card">
+          <div class="card-label">Prevalencia general</div>
+          <div class="card-value"><mark>5–22%</mark> de la población general</div>
+        </div>
+        <div class="card">
+          <div class="card-label">Por edad</div>
+          <div class="card-value">15–30% en mayores de 50–80 años · Aumenta con la edad</div>
+        </div>
+        <div class="card">
+          <div class="card-label">Sexo</div>
+          <div class="card-value">Mayor prevalencia en mujeres — relación hasta <mark>2.15:1</mark></div>
+        </div>
+        <div class="card">
+          <div class="card-label">Síntomas / S. Lemmel</div>
+          <div class="card-value">Solo <mark>1–5%</mark> de los portadores desarrollan síntomas o complicaciones</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Fisiopatología -->
+  <section>
+    <div class="section-header" onclick="toggle(this)">
+      <span class="section-num">03</span>
+      <h2>Fisiopatología</h2>
+      <span class="toggle-icon">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="fisio-item">
+        <div class="fisio-num">1</div>
+        <div class="fisio-text"><strong>Compresión mecánica directa</strong><br>El divertículo, especialmente lleno de restos alimenticios (bezoares) o enterolitos, comprime el conducto biliar común o la ampolla de Váter.</div>
+      </div>
+      <div class="fisio-item">
+        <div class="fisio-num">2</div>
+        <div class="fisio-text"><strong>Disfunción del esfínter de Oddi</strong><br>La presencia del divertículo altera el funcionamiento normal del esfínter → <strong>estasis biliar</strong> → favorece sobrecrecimiento bacteriano y reflujo duodenobiliar.</div>
+      </div>
+      <div class="fisio-item">
+        <div class="fisio-num">3</div>
+        <div class="fisio-text"><strong>Papilitis crónica fibrosa</strong><br>La irritación mecánica sostenida produce inflamación crónica de la papila → fibrosis → obstrucción progresiva del flujo biliar.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Manifestaciones clínicas -->
+  <section>
+    <div class="section-header" onclick="toggle(this)">
+      <span class="section-num">04</span>
+      <h2>Manifestaciones clínicas</h2>
+      <span class="toggle-icon">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="grid">
+        <div class="card">
+          <div class="card-label">Asintomáticos</div>
+          <div class="card-value"><mark>90–95%</mark> son hallazgos incidentales</div>
+        </div>
+        <div class="card">
+          <div class="card-label">Síntomas inespecíficos</div>
+          <div class="card-value">Dolor en hipocondrio derecho · Epigastralgia · Náuseas · Plenitud postprandial</div>
+        </div>
+      </div>
+      <hr class="divider">
+      <p style="font-family:'DM Mono',monospace;font-size:0.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;">Complicaciones</p>
+      <ul class="styled">
+        <li><span class="tag tag-gold">Biliar</span> Ictericia obstructiva <strong>intermitente</strong> · Colangitis · Pancreatitis aguda</li>
+        <li><span class="tag tag-red">Estructural</span> Perforación · Diverticulitis · Fístulas · Hemorragia digestiva</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 5. Diagnóstico -->
+  <section>
+    <div class="section-header" onclick="toggle(this)">
+      <span class="section-num">05</span>
+      <h2>Diagnóstico</h2>
+      <span class="toggle-icon">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="dx-flow">
+        <div class="dx-step">
+          <div class="dx-icon">🧪</div>
+          <div><strong>Laboratorio</strong> — Patrón colestásico: ↑FA · ↑BD · ↑GGT · ± ↑enzimas pancreáticas · ± leucocitosis</div>
+        </div>
+        <div class="dx-arrow">↓</div>
+        <div class="dx-step">
+          <div class="dx-icon">🔊</div>
+          <div><strong>USG</strong> — Prueba inicial · Puede mostrar dilatación de vía biliar, pero raramente identifica el divertículo (gas intestinal interfiere)</div>
+        </div>
+        <div class="dx-arrow">↓</div>
+        <div class="dx-step">
+          <div class="dx-icon">🖥</div>
+          <div><strong>TC / CRM</strong> — Esenciales para identificar el DDP como <mark>cavidad de pared delgada con aire o líquido</mark> · Descartan tumores y otras causas</div>
+        </div>
+        <div class="dx-arrow">↓</div>
+        <div class="dx-step gold-standard">
+          <div class="dx-icon">⭐</div>
+          <div><strong>CPRE — Gold standard</strong> · Visión directa del divertículo y su relación con la papila · Vía terapéutica simultánea</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Clasificación de Boix -->
+  <section>
+    <div class="section-header" onclick="toggle(this)">
+      <span class="section-num">06</span>
+      <h2>Clasificación de Boix</h2>
+      <span class="toggle-icon">▾</span>
+    </div>
+    <div class="section-body">
+      <p style="margin-bottom:0.75rem;font-size:0.83rem;color:var(--muted);">Describe la relación anatómica entre la papila duodenal mayor y el divertículo.</p>
+      <div class="boix-grid">
+        <div class="boix-cell header">Tipo</div>
+        <div class="boix-cell header">Relación papila–divertículo</div>
+        <div class="boix-cell header">Nota clínica</div>
+        <div class="boix-cell"><span class="tipo-badge">I</span></div>
+        <div class="boix-cell">Papila <strong>intradiverticular</strong> (dentro del divertículo)</div>
+        <div class="boix-cell"><span class="tag tag-red">Mayor dificultad</span> Más alta tasa de fallo en canulación por CPRE</div>
+        <div class="boix-cell"><span class="tipo-badge">II</span></div>
+        <div class="boix-cell">Papila en el <strong>margen</strong> del divertículo</div>
+        <div class="boix-cell">Dificultad técnica intermedia</div>
+        <div class="boix-cell" style="border-bottom:none"><span class="tipo-badge">III</span></div>
+        <div class="boix-cell" style="border-bottom:none">Papila <strong>cerca</strong> del divertículo <mark>(&lt; 3 cm)</mark></div>
+        <div class="boix-cell" style="border-bottom:none">Menor dificultad técnica</div>
+      </div>
+
+      <div class="pearl">
+        <div class="pearl-label">Perla clínica</div>
+        La dificultad de canulación por CPRE se clasifica en <strong>4 grados</strong> — el Grado 4 representa imposibilidad técnica. El <strong>Tipo I de Boix</strong> concentra la mayor proporción de fallo.
+      </div>
+
+      <hr class="divider">
+
+      <p style="margin-bottom:0.6rem;font-family:'DM Mono',monospace;font-size:0.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;">Clasificación de Noda (subclasificación)</p>
+      <div class="noda-grid">
+        <div class="noda-card">
+          <div class="noda-letter">A</div>
+          <div class="noda-desc">Papila mayor <strong>lejos</strong> del divertículo duodenal</div>
+        </div>
+        <div class="noda-card">
+          <div class="noda-letter">B</div>
+          <div class="noda-desc">Papila <strong>adyacente</strong> al divertículo</div>
+        </div>
+        <div class="noda-card">
+          <div class="noda-letter">C</div>
+          <div class="noda-desc">Papila en el <strong>margen</strong> del divertículo</div>
+        </div>
+        <div class="noda-card">
+          <div class="noda-letter">D</div>
+          <div class="noda-desc">Papila <strong>dentro</strong> del divertículo</div>
+        </div>
+      </div>
+
+      <p style="margin-top:0.9rem;margin-bottom:0.4rem;font-family:'DM Mono',monospace;font-size:0.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;">Sub-subclasificación (Tipo II de Noda)</p>
+      <div class="subnoda">
+        <div class="subnoda-item"><code>IIa</code> — Apical izquierdo</div>
+        <div class="subnoda-item"><code>IIb</code> — Apical derecho</div>
+        <div class="subnoda-item"><code>IIc</code> — Centro del margen</div>
+        <div class="subnoda-item"><code>IId</code> — Entre 2 divertículos</div>
+      </div>
+
+      <div class="pearl" style="margin-top:0.75rem">
+        <div class="pearl-label">Equivalencia Boix ↔ Noda</div>
+        Boix <strong>Tipo I</strong> ≈ Noda <strong>D</strong> (papila intradiverticular) · Boix <strong>Tipo II</strong> ≈ Noda <strong>B/C</strong>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. Tratamiento -->
+  <section>
+    <div class="section-header" onclick="toggle(this)">
+      <span class="section-num">07</span>
+      <h2>Tratamiento</h2>
+      <span class="toggle-icon">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="tx-grid">
+        <div class="tx-card expectante">
+          <div class="tx-title">Asintomático</div>
+          <ul class="tx-list">
+            <li>Manejo expectante</li>
+            <li>No requiere intervención endoscópica ni quirúrgica</li>
+          </ul>
+        </div>
+        <div class="tx-card endo">
+          <div class="tx-title">Sintomático · 1ª elección</div>
+          <ul class="tx-list">
+            <li>CPRE</li>
+            <li>Esfinterotomía</li>
+            <li>Stents biliares</li>
+            <li>Vaciamiento del divertículo</li>
+            <li>ATB en colangitis / pancreatitis</li>
+          </ul>
+        </div>
+        <div class="tx-card qx">
+          <div class="tx-title">Quirúrgico · Fracaso o complicación grave</div>
+          <ul class="tx-list">
+            <li>Diverticulectomía</li>
+            <li>Derivaciones biliodigestivas</li>
+            <li>Esfinteroplastia</li>
+            <li>Cx abierta en perforación / hemorragia masiva</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<script>
+  function toggle(header) {
+    const body = header.nextElementSibling;
+    const icon = header.querySelector('.toggle-icon');
+    if (!body.style.maxHeight || body.classList.contains('collapsed')) {
+      body.style.maxHeight = body.scrollHeight + 'px';
+      body.classList.remove('collapsed');
+      icon.classList.remove('rotated');
+    } else {
+      body.style.maxHeight = '0';
+      body.classList.add('collapsed');
+      icon.classList.add('rotated');
+    }
+  }
+
+  // Set initial max-heights
+  document.querySelectorAll('.section-body').forEach(b => {
+    b.style.maxHeight = b.scrollHeight + 'px';
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Repaso Clínico · Cirugía General R1</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@300;400;500&family=Source+Serif+4:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f5f0e8;
+    --bg2: #ede8df;
+    --surface: #ffffff;
+    --border: #d6cebc;
+    --ink: #1a1814;
+    --ink2: #4a4540;
+    --muted: #9a9088;
+    --accent: #8b2f2f;
+    --accent2: #2f5e8b;
+    --accent3: #2f7a4a;
+    --accent-warm: #c4783a;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Source Serif 4', serif;
+    font-weight: 300;
+    min-height: 100vh;
+    padding: 0;
+  }
+
+  /* Paper texture */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 27px,
+        rgba(0,0,0,0.03) 27px,
+        rgba(0,0,0,0.03) 28px
+      );
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .page {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 3rem 2rem 5rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Header */
+  header {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    gap: 1rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 2px solid var(--ink);
+    margin-bottom: 3rem;
+    animation: fadeIn 0.7s ease both;
+  }
+
+  .header-left {}
+
+  .header-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    font-weight: 400;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    margin-bottom: 0.5rem;
+  }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 400;
+    line-height: 1.05;
+    color: var(--ink);
+  }
+
+  h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .header-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--muted);
+    text-align: right;
+    line-height: 1.8;
+  }
+
+  .card-count {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    font-style: italic;
+    color: var(--accent);
+    display: block;
+    line-height: 1;
+  }
+
+  /* Search */
+  .search-bar {
+    position: relative;
+    margin-bottom: 2.5rem;
+    animation: fadeIn 0.5s ease 0.1s both;
+  }
+
+  .search-bar input {
+    width: 100%;
+    padding: 0.75rem 1rem 0.75rem 2.5rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--ink);
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .search-bar input::placeholder { color: var(--muted); }
+
+  .search-bar input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(139,47,47,0.08);
+  }
+
+  .search-icon {
+    position: absolute;
+    left: 0.85rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--muted);
+    font-size: 0.8rem;
+    pointer-events: none;
+  }
+
+  /* Section group */
+  .group {
+    margin-bottom: 2.5rem;
+    animation: fadeUp 0.5s ease both;
+  }
+
+  .group:nth-child(1) { animation-delay: 0.15s; }
+  .group:nth-child(2) { animation-delay: 0.2s; }
+  .group:nth-child(3) { animation-delay: 0.25s; }
+
+  .group-label {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .group-label h2 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--muted);
+  }
+
+  .group-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* Cards */
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .card {
+    background: var(--surface);
+    padding: 1.25rem 1.5rem;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    transition: background 0.15s;
+    cursor: pointer;
+    position: relative;
+  }
+
+  .card:hover { background: var(--bg2); }
+
+  .card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .card-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+  }
+
+  .card-status {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    padding: 0.1rem 0.4rem;
+    border-radius: 2px;
+    letter-spacing: 0.05em;
+  }
+
+  .status-done { background: rgba(47,122,74,0.1); color: var(--accent3); }
+  .status-pending { background: rgba(154,144,136,0.12); color: var(--muted); }
+  .status-wip { background: rgba(196,120,58,0.12); color: var(--accent-warm); }
+
+  .card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    font-weight: 400;
+    line-height: 1.3;
+    color: var(--ink);
+  }
+
+  .card-sub {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  .card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+    margin-top: 0.25rem;
+  }
+
+  .tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.58rem;
+    padding: 0.1rem 0.4rem;
+    border-radius: 2px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .tag-biliar { background: rgba(139,47,47,0.08); color: var(--accent); }
+  .tag-endo   { background: rgba(47,94,139,0.08); color: var(--accent2); }
+  .tag-infec  { background: rgba(47,122,74,0.08); color: var(--accent3); }
+  .tag-trauma { background: rgba(196,120,58,0.1); color: var(--accent-warm); }
+
+  .card-arrow {
+    position: absolute;
+    right: 1.25rem;
+    bottom: 1.1rem;
+    font-size: 0.8rem;
+    color: var(--border);
+    transition: color 0.15s, transform 0.15s;
+  }
+
+  .card:hover .card-arrow {
+    color: var(--accent);
+    transform: translateX(3px);
+  }
+
+  /* Empty card */
+  .card.empty {
+    opacity: 0.45;
+    cursor: default;
+    pointer-events: none;
+  }
+
+  /* Stats bar */
+  .stats {
+    display: flex;
+    gap: 2rem;
+    padding: 1.25rem 1.5rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    margin-bottom: 2.5rem;
+    animation: fadeIn 0.5s ease 0.05s both;
+    flex-wrap: wrap;
+  }
+
+  .stat {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .stat-val {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-style: italic;
+    color: var(--ink);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+
+  .stat-bar {
+    margin-top: auto;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--border);
+    flex: 1;
+    min-width: 160px;
+  }
+
+  .progress-track {
+    height: 4px;
+    background: var(--bg2);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-top: 0.4rem;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: var(--accent3);
+    border-radius: 2px;
+    transition: width 0.6s ease;
+  }
+
+  /* Footer */
+  footer {
+    margin-top: 4rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .footer-text {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.62rem;
+    color: var(--muted);
+  }
+
+  .footer-text a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  /* No results */
+  .no-results {
+    display: none;
+    text-align: center;
+    padding: 3rem 1rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--muted);
+  }
+
+  /* Animations */
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Mobile */
+  @media (max-width: 600px) {
+    .page { padding: 2rem 1rem 4rem; }
+    header { grid-template-columns: 1fr; }
+    .header-meta { text-align: left; }
+    .stats { gap: 1.25rem; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <div class="header-left">
+      <div class="header-tag">Hospital Valentín Gómez Farías · ISSSTE · Guadalajara</div>
+      <h1>Repaso Clínico<br><em>Cirugía General</em></h1>
+    </div>
+    <div class="header-meta">
+      R1 · 2024–2025<br>
+      <span class="card-count" id="total-count">1</span>
+      tarjeta
+    </div>
+  </header>
+
+  <!-- Stats -->
+  <div class="stats">
+    <div class="stat">
+      <span class="stat-val" id="stat-done">1</span>
+      <span class="stat-label">Completadas</span>
+    </div>
+    <div class="stat">
+      <span class="stat-val" id="stat-pending">—</span>
+      <span class="stat-label">Pendientes</span>
+    </div>
+    <div class="stat">
+      <span class="stat-val" id="stat-topics">1</span>
+      <span class="stat-label">Temas</span>
+    </div>
+    <div class="stat-bar">
+      <div class="stat-label">Progreso total</div>
+      <div class="progress-track">
+        <div class="progress-fill" id="progress-fill" style="width: 100%"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Search -->
+  <div class="search-bar">
+    <span class="search-icon">⌕</span>
+    <input type="text" id="search" placeholder="Buscar tema, diagnóstico, clasificación..." oninput="filterCards()">
+  </div>
+
+  <!-- Group: Vía biliar -->
+  <div class="group" data-group="biliar">
+    <div class="group-label">
+      <h2>Vía biliar & páncreas</h2>
+    </div>
+    <div class="cards">
+
+      <a class="card" href="lemmel_repaso.html" data-title="Síndrome de Lemmel" data-tags="divertículo periampular ictericia obstructiva boix noda cpre biliar">
+        <div class="card-top">
+          <span class="card-num">01</span>
+          <span class="card-status status-done">✓ Lista</span>
+        </div>
+        <div class="card-title">Síndrome de Lemmel</div>
+        <div class="card-sub">Divertículo periampular · Clasificación de Boix · Clasificación de Noda</div>
+        <div class="card-tags">
+          <span class="tag tag-biliar">Biliar</span>
+          <span class="tag tag-endo">CPRE</span>
+        </div>
+        <span class="card-arrow">→</span>
+      </a>
+
+      <div class="card empty" data-title="Colangitis aguda" data-tags="tg18 biliar infección antibióticos drenaje">
+        <div class="card-top">
+          <span class="card-num">02</span>
+          <span class="card-status status-done">✓ Lista</span>
+        </div>
+        <div class="card-title">Colangitis aguda</div>
+        <div class="card-sub">TG18 · Criterios diagnósticos · Severidad · Antibióticos · Drenaje biliar</div>
+        <div class="card-tags">
+          <span class="tag tag-biliar">Biliar</span>
+          <span class="tag tag-infec">Infección</span>
+        </div>
+        <span class="card-arrow">→</span>
+      </div>
+
+      <div class="card empty" data-title="Coledocolitiasis" data-tags="biliar cpre colédoco cálculos">
+        <div class="card-top">
+          <span class="card-num">03</span>
+          <span class="card-status status-pending">Pendiente</span>
+        </div>
+        <div class="card-title">Coledocolitiasis</div>
+        <div class="card-sub">Diagnóstico · CPRE · Manejo</div>
+        <div class="card-tags">
+          <span class="tag tag-biliar">Biliar</span>
+        </div>
+        <span class="card-arrow">→</span>
+      </div>
+
+      <div class="card empty" data-title="Pancreatitis aguda" data-tags="ranson bisap atlanta páncreas severidad">
+        <div class="card-top">
+          <span class="card-num">04</span>
+          <span class="card-status status-pending">Pendiente</span>
+        </div>
+        <div class="card-title">Pancreatitis aguda</div>
+        <div class="card-sub">Ranson · BISAP · Clasificación Atlanta · Manejo</div>
+        <div class="card-tags">
+          <span class="tag tag-biliar">Biliar</span>
+        </div>
+        <span class="card-arrow">→</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Group: Infectología qx -->
+  <div class="group" data-group="infec">
+    <div class="group-label">
+      <h2>Infección & antibióticos</h2>
+    </div>
+    <div class="cards">
+
+      <div class="card empty" data-title="Antibióticos en cirugía" data-tags="sanford antibióticos empírico profilaxis infección">
+        <div class="card-top">
+          <span class="card-num">05</span>
+          <span class="card-status status-pending">Pendiente</span>
+        </div>
+        <div class="card-title">Antibióticos en cirugía</div>
+        <div class="card-sub">Guía Sanford · Cobertura empírica · Profilaxis quirúrgica</div>
+        <div class="card-tags">
+          <span class="tag tag-infec">Infección</span>
+        </div>
+        <span class="card-arrow">→</span>
+      </div>
+
+      <div class="card empty" data-title="Sepsis & septic shock" data-tags="sepsis news qsofa antibióticos uci">
+        <div class="card-top">
+          <span class="card-num">06</span>
+          <span class="card-status status-pending">Pendiente</span>
+        </div>
+        <div class="card-title">Sepsis & choque séptico</div>
+        <div class="card-sub">NEWS2 · qSOFA · Surviving Sepsis Campaign</div>
+        <div class="card-tags">
+          <span class="tag tag-infec">Infección</span>
+        </div>
+        <span class="card-arrow">→</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Group: Próximas -->
+  <div class="group" data-group="misc">
+    <div class="group-label">
+      <h2>Por agregar</h2>
+    </div>
+    <div class="cards">
+
+      <div class="card empty" data-title="Obstrucción intestinal" data-tags="oclusión intestinal íleo cirugía abdomen">
+        <div class="card-top">
+          <span class="card-num">07</span>
+          <span class="card-status status-pending">Pendiente</span>
+        </div>
+        <div class="card-title">Obstrucción intestinal</div>
+        <div class="card-sub">Íleo vs obstrucción mecánica · Manejo · Cx</div>
+        <div class="card-tags">
+          <span class="tag tag-trauma">Abdomen</span>
+        </div>
+        <span class="card-arrow">→</span>
+      </div>
+
+      <div class="card empty" data-title="Apendicitis aguda" data-tags="alvarado apendicitis score cirugía abdomen">
+        <div class="card-top">
+          <span class="card-num">08</span>
+          <span class="card-status status-pending">Pendiente</span>
+        </div>
+        <div class="card-title">Apendicitis aguda</div>
+        <div class="card-sub">Score de Alvarado · Diagnóstico · Laparoscopía</div>
+        <div class="card-tags">
+          <span class="tag tag-trauma">Abdomen</span>
+        </div>
+        <span class="card-arrow">→</span>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="no-results" id="no-results">No se encontraron tarjetas para esa búsqueda.</div>
+
+  <footer>
+    <span class="footer-text">Repaso Clínico R1 · Cirugía General · HVGF</span>
+    <span class="footer-text">Agrega cada nueva tarjeta como <code>.html</code> en esta misma carpeta</span>
+  </footer>
+
+</div>
+
+<script>
+  function filterCards() {
+    const q = document.getElementById('search').value.toLowerCase().trim();
+    const cards = document.querySelectorAll('.card');
+    const groups = document.querySelectorAll('.group');
+    let visible = 0;
+
+    cards.forEach(card => {
+      const title = (card.dataset.title || '').toLowerCase();
+      const tags  = (card.dataset.tags  || '').toLowerCase();
+      const match = !q || title.includes(q) || tags.includes(q);
+      card.style.display = match ? '' : 'none';
+      if (match) visible++;
+    });
+
+    // Hide empty groups
+    groups.forEach(g => {
+      const anyVisible = [...g.querySelectorAll('.card')].some(c => c.style.display !== 'none');
+      g.style.display = anyVisible ? '' : 'none';
+    });
+
+    document.getElementById('no-results').style.display = visible === 0 ? 'block' : 'none';
+  }
+
+  // Update stats dynamically
+  function updateStats() {
+    const allCards = document.querySelectorAll('.card:not(.empty)');
+    const done = document.querySelectorAll('.status-done').length;
+    const pending = document.querySelectorAll('.status-pending').length;
+    const total = done + pending;
+
+    document.getElementById('total-count').textContent = done;
+    document.getElementById('stat-done').textContent = done;
+    document.getElementById('stat-pending').textContent = pending;
+    document.getElementById('stat-topics').textContent = document.querySelectorAll('.group').length;
+
+    const pct = total > 0 ? (done / total) * 100 : 0;
+    document.getElementById('progress-fill').style.width = pct + '%';
+  }
+
+  updateStats();
+</script>
+</body>
+</html>
