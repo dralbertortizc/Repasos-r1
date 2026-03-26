@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fistulectomía Anal — Repaso Quirúrgico</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0e0e10;
+    --surface: #16161a;
+    --surface2: #1e1e24;
+    --border: #2a2a35;
+    --accent: #c8a96e;
+    --accent2: #7eb8a4;
+    --accent3: #e07070;
+    --accent4: #7ea8d8;
+    --text: #dcdce0;
+    --text-muted: #888898;
+    --text-dim: #555565;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    padding: 2rem 1rem 4rem;
+  }
+
+  .container {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  /* Header */
+  .header {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 2rem;
+    margin-bottom: 3rem;
+  }
+
+  .tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+
+  h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    color: #f0ede6;
+    line-height: 1.15;
+    margin-bottom: 0.5rem;
+  }
+
+  h1 em {
+    color: var(--accent);
+    font-style: italic;
+  }
+
+  .subtitle {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    font-family: 'IBM Plex Mono', monospace;
+  }
+
+  /* Nav tabs */
+  .nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .nav-btn {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    padding: 0.4rem 0.85rem;
+    border-radius: 4px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    letter-spacing: 0.04em;
+  }
+
+  .nav-btn:hover, .nav-btn.active {
+    background: var(--surface2);
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  /* Sections */
+  .section { display: none; }
+  .section.active { display: block; }
+
+  /* Section header */
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .section-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    min-width: 2rem;
+  }
+
+  h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.7rem;
+    color: #f0ede6;
+  }
+
+  /* Cards */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .card-title {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 0.8rem;
+  }
+
+  .card-title.gold { color: var(--accent); }
+  .card-title.teal { color: var(--accent2); }
+  .card-title.red { color: var(--accent3); }
+  .card-title.blue { color: var(--accent4); }
+
+  h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.15rem;
+    color: #e8e5de;
+    margin-bottom: 0.5rem;
+  }
+
+  p { margin-bottom: 0.6rem; font-size: 0.92rem; }
+  p:last-child { margin-bottom: 0; }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 0.6rem;
+  }
+
+  ul li {
+    padding: 0.2rem 0;
+    padding-left: 1.2rem;
+    position: relative;
+    font-size: 0.92rem;
+  }
+
+  ul li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--text-dim);
+  }
+
+  /* Two column grid */
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  @media (max-width: 600px) { .grid-2 { grid-template-columns: 1fr; } }
+
+  /* Highlight box */
+  .highlight {
+    border-left: 3px solid var(--accent);
+    padding: 0.8rem 1rem;
+    background: rgba(200, 169, 110, 0.06);
+    border-radius: 0 6px 6px 0;
+    margin: 1rem 0;
+    font-size: 0.9rem;
+  }
+
+  .highlight.teal {
+    border-left-color: var(--accent2);
+    background: rgba(126, 184, 164, 0.06);
+  }
+
+  .highlight.red {
+    border-left-color: var(--accent3);
+    background: rgba(224, 112, 112, 0.06);
+  }
+
+  .highlight.blue {
+    border-left-color: var(--accent4);
+    background: rgba(126, 168, 216, 0.06);
+  }
+
+  strong { color: #f0ede6; font-weight: 500; }
+
+  /* Park steps */
+  .steps { counter-reset: step-counter; }
+
+  .step {
+    display: flex;
+    gap: 1rem;
+    padding: 0.9rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .step:last-child { border-bottom: none; }
+
+  .step-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--accent);
+    min-width: 1.8rem;
+    padding-top: 0.1rem;
+  }
+
+  .step-content { flex: 1; }
+
+  .step-title {
+    font-weight: 500;
+    color: #e8e5de;
+    font-size: 0.95rem;
+    margin-bottom: 0.2rem;
+  }
+
+  .step-detail {
+    font-size: 0.87rem;
+    color: var(--text-muted);
+  }
+
+  /* Badge */
+  .badge {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 3px;
+    letter-spacing: 0.06em;
+    margin-left: 0.5rem;
+    vertical-align: middle;
+  }
+
+  .badge-gold { background: rgba(200,169,110,0.15); color: var(--accent); border: 1px solid rgba(200,169,110,0.3); }
+  .badge-red  { background: rgba(224,112,112,0.15); color: var(--accent3); border: 1px solid rgba(224,112,112,0.3); }
+  .badge-teal { background: rgba(126,184,164,0.15); color: var(--accent2); border: 1px solid rgba(126,184,164,0.3); }
+
+  /* Warning */
+  .warning {
+    background: rgba(224,112,112,0.08);
+    border: 1px solid rgba(224,112,112,0.25);
+    border-radius: 6px;
+    padding: 0.9rem 1.1rem;
+    margin: 1rem 0;
+    font-size: 0.88rem;
+  }
+
+  .warning::before {
+    content: '⚠ ';
+    color: var(--accent3);
+  }
+
+  /* Rule of thirds diagram hint */
+  .anatomy-diagram {
+    background: var(--surface2);
+    border: 1px dashed var(--border);
+    border-radius: 6px;
+    padding: 1.2rem;
+    text-align: center;
+    margin: 1rem 0;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    line-height: 2;
+  }
+
+  .rule-line {
+    font-size: 1rem;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+  }
+
+  /* Separator */
+  .sep {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 1.5rem 0;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <div class="tag">Cirugía General · R1 · Repaso preoperatorio</div>
+    <h1>Fistulectomía <em>Anal</em></h1>
+    <div class="subtitle">Anatomía · Inervación · Irrigación · Clínica · Técnica · Postoperatorio</div>
+  </div>
+
+  <nav class="nav">
+    <button class="nav-btn active" onclick="show('anatomia', this)">01 Anatomía</button>
+    <button class="nav-btn" onclick="show('inervacion', this)">02 Inervación</button>
+    <button class="nav-btn" onclick="show('irrigacion', this)">03 Irrigación</button>
+    <button class="nav-btn" onclick="show('clinica', this)">04 Clínica y tipos</button>
+    <button class="nav-btn" onclick="show('tecnica', this)">05 Técnica Qx</button>
+    <button class="nav-btn" onclick="show('postop', this)">06 Postoperatorio</button>
+  </nav>
+
+  <!-- ===== 01 ANATOMÍA ===== -->
+  <div id="anatomia" class="section active">
+    <div class="section-header">
+      <span class="section-num">01</span>
+      <h2>Anatomía anorrectal</h2>
+    </div>
+
+    <div class="card">
+      <div class="card-title gold">Canal anal</div>
+      <p>El canal anal quirúrgico mide <strong>3–4 cm</strong> y se extiende desde la <strong>línea anorrectal</strong> (donde termina el músculo puborrectal) hasta el margen anal externo. El canal anal anatómico es más corto (línea pectínea → margen anal).</p>
+      <div class="highlight">
+        La <strong>línea dentada (pectínea)</strong> es el hito más importante: divide el epitelio columnar del escamoso, el sistema venoso portal del sistémico, y la inervación visceral de la somática. Se localiza a ~2 cm del margen anal.
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title teal">Por encima de la línea dentada</div>
+        <ul>
+          <li>Epitelio columnar (mucosa rectal)</li>
+          <li>Columnas de Morgagni (8–14)</li>
+          <li>Criptas de Morgagni en la base</li>
+          <li>Glándulas anales (origen de las fístulas)</li>
+          <li>Zona de transición cloacogénica</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title red">Por debajo de la línea dentada</div>
+        <ul>
+          <li>Epitelio escamoso estratificado</li>
+          <li>Anodermo (muy sensible)</li>
+          <li>Margen anal: piel con folículos y glándulas</li>
+          <li>Inervación somática (dolor preciso)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title gold">Complejo esfinteriano</div>
+      <h3>Esfínter interno (EAI)</h3>
+      <p>Músculo liso, extensión distal de la capa circular del recto. <strong>Involuntario</strong>. Responsable del <strong>75–85% del tono de reposo</strong>. Su lesión causa incontinencia pasiva (escurrimiento fecal). Se extiende 1–1.5 cm más allá del EAE.</p>
+      <hr class="sep">
+      <h3>Esfínter externo (EAE)</h3>
+      <p>Músculo estriado, voluntario. Tres haces: <strong>subcutáneo, superficial y profundo</strong>. Se fusiona con el músculo puborrectal cranialmente. Responsable de la continencia activa (contracción voluntaria ante urgencia).</p>
+      <hr class="sep">
+      <h3>Músculo puborrectal</h3>
+      <p>Forma el ángulo anorrectal (~90°), clave para la continencia. No debe seccionarse. Forma el <strong>anillo anorrectal</strong> palpable al tacto digital.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title blue">Espacios perianales — críticos para entender las fístulas</div>
+      <ul>
+        <li><strong>Espacio interesfinteriano:</strong> entre EAI y EAE. Contiene las glándulas anales. <em>Origen de la mayoría de las fístulas</em>.</li>
+        <li><strong>Espacio isquioanal (isquiorrectal):</strong> lateral, entre EAE y fosa isquial. Permite la extensión de abscesos.</li>
+        <li><strong>Espacio supraelevador:</strong> por encima del elevador del ano. Infecciones complejas.</li>
+        <li><strong>Espacio subcutáneo perianal:</strong> superficial al EAE subcutáneo.</li>
+        <li><strong>Espacio postanal (de Courtney):</strong> comunica ambos espacios isquioanales → fístulas en herradura.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="card-title teal">Teoría criptoglandular (Parks, 1961)</div>
+      <p>La gran mayoría de las fístulas anales (~90%) tienen origen en las <strong>glándulas anales</strong> ubicadas en las criptas de Morgagni. Estas glándulas penetran el EAI y llegan al espacio interesfinteriano. Cuando se infectan → absceso interesfinteriano → se abre camino hacia la superficie → fístula.</p>
+    </div>
+  </div>
+
+  <!-- ===== 02 INERVACIÓN ===== -->
+  <div id="inervacion" class="section">
+    <div class="section-header">
+      <span class="section-num">02</span>
+      <h2>Inervación</h2>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title gold">Por encima de la línea dentada</div>
+        <p><strong>Visceral / autónoma</strong></p>
+        <ul>
+          <li><strong>Simpático:</strong> plexo hipogástrico (L1–L3). Inhibe peristaltismo, tono esfínter interno ↑</li>
+          <li><strong>Parasimpático:</strong> nervios erectores (S2–S4, nervii erigentes). Estimula peristaltismo.</li>
+        </ul>
+        <div class="highlight teal">Dolor difuso, mal localizado. El paciente percibe distensión, no dolor agudo.</div>
+      </div>
+      <div class="card">
+        <div class="card-title red">Por debajo de la línea dentada</div>
+        <p><strong>Somática</strong></p>
+        <ul>
+          <li><strong>Nervio pudendo (S2–S4)</strong> → rama hemorroidal inferior</li>
+          <li>Inerva anodermo, EAE, piel perianal</li>
+        </ul>
+        <div class="highlight red">Dolor agudo, preciso, bien localizado. Cualquier manipulación en anodermo es muy dolorosa → requiere anestesia adecuada.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title blue">Nervio pudendo — relevancia quirúrgica</div>
+      <p>Sale por el <strong>agujero ciático mayor</strong>, rodea la espina ciática y entra por el <strong>agujero ciático menor</strong> hacia el canal de Alcock (canal pudendo), en la pared lateral de la fosa isquioanal.</p>
+      <ul>
+        <li>Rama perineal → escroto/labios, músculos perineales</li>
+        <li>Rama hemorroidal inferior → EAE y piel anal</li>
+        <li>Nervio dorsal del pene/clítoris</li>
+      </ul>
+      <div class="highlight">El bloqueo pudendo bilateral (infiltración en espina ciática) permite cirugía anal con sedación o como complemento de anestesia regional.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title teal">Inervación del EAI</div>
+      <p>El esfínter interno recibe inervación <strong>simpática inhibitoria</strong> (relaja ante distensión rectal — reflejo rectoanal inhibitorio, RRAI) y parasimpática. Autonómico puro: no está bajo control voluntario. Su tono basal es miogénico + adrenérgico.</p>
+    </div>
+  </div>
+
+  <!-- ===== 03 IRRIGACIÓN ===== -->
+  <div id="irrigacion" class="section">
+    <div class="section-header">
+      <span class="section-num">03</span>
+      <h2>Irrigación</h2>
+    </div>
+
+    <div class="card">
+      <div class="card-title gold">Arterias</div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">A1</div>
+          <div class="step-content">
+            <div class="step-title">Hemorroidal superior (rectal superior)</div>
+            <div class="step-detail">Rama terminal de la <strong>arteria mesentérica inferior</strong>. Irriga el recto superior y los plexos hemorroidales internos. Principal irrigación del canal anal proximal.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">A2</div>
+          <div class="step-content">
+            <div class="step-title">Hemorroidal media (rectal media)</div>
+            <div class="step-detail">Rama de la <strong>arteria ilíaca interna</strong>. Variable en su presencia (ausente en ~50%). Irriga la pared rectal lateral y el EAI.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">A3</div>
+          <div class="step-content">
+            <div class="step-title">Hemorroidal inferior (rectal inferior)</div>
+            <div class="step-detail">Rama de la <strong>arteria pudenda interna</strong> (de la ilíaca interna). Irriga el EAE, la fosa isquioanal y el anodermo. <em>La más relevante en la cirugía de fístulas</em>.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title teal">Drenaje venoso</div>
+      <div class="grid-2">
+        <div>
+          <p><strong>Plexo hemorroidal interno</strong></p>
+          <ul>
+            <li>Submucosa, por encima de línea dentada</li>
+            <li>Drena por vena rectal superior → <strong>porta</strong></li>
+            <li>Origen de hemorroides internas</li>
+          </ul>
+        </div>
+        <div>
+          <p><strong>Plexo hemorroidal externo</strong></p>
+          <ul>
+            <li>Subcutáneo, por debajo de línea dentada</li>
+            <li>Drena por vena pudenda → ilíaca interna → <strong>cava</strong></li>
+            <li>Origen de hemorroides externas y trombosis</li>
+          </ul>
+        </div>
+      </div>
+      <div class="highlight teal">La comunicación portocava en este nivel tiene importancia clínica en hipertensión portal (hemorroides por várices).</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title red">Drenaje linfático</div>
+      <ul>
+        <li><strong>Por encima de línea dentada:</strong> ganglios ilíacos internos → paraaórticos</li>
+        <li><strong>Por debajo de línea dentada:</strong> ganglios inguinales superficiales</li>
+      </ul>
+      <div class="highlight red">Relevancia oncológica: el cáncer de canal anal por encima de línea dentada metastatiza a cadenas pelvianas; por debajo, a cadenas inguinales. En fístulas benignas no es prioritario.</div>
+    </div>
+  </div>
+
+  <!-- ===== 04 CLÍNICA ===== -->
+  <div id="clinica" class="section">
+    <div class="section-header">
+      <span class="section-num">04</span>
+      <h2>Clínica y clasificación</h2>
+    </div>
+
+    <div class="card">
+      <div class="card-title gold">Presentación clínica</div>
+      <ul>
+        <li><strong>Secreción perianal persistente</strong> (el síntoma cardinal): pus, mucosidad o sangre por orificio externo</li>
+        <li>Antecedente de absceso perianal drenado (espontáneamente o quirúrgicamente)</li>
+        <li>Dolor perianal crónico o recurrente</li>
+        <li>Prurito anal</li>
+        <li>Irritación cutánea perianal</li>
+      </ul>
+      <div class="highlight">La fístula es la <em>fase crónica</em> del absceso. La historia natural: absceso → drenaje (quirúrgico o espontáneo) → fístula en ~30–50% de los casos.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title blue">Clasificación de Parks (1976) — la más utilizada</div>
+      <p>Basada en la relación del trayecto fistuloso con el <strong>complejo esfinteriano</strong>:</p>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">I</div>
+          <div class="step-content">
+            <div class="step-title">Interesfinteriana <span class="badge badge-teal">~45%</span></div>
+            <div class="step-detail">Trayecto entre EAI y EAE. Sale por la piel perianal. La más frecuente. Tratamiento: fistulotomía directa (bajo riesgo de incontinencia).</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">II</div>
+          <div class="step-content">
+            <div class="step-title">Transesfinteriana <span class="badge badge-gold">~30%</span></div>
+            <div class="step-detail">Atraviesa el EAE (bajo o alto). Sale por la fosa isquioanal. El porcentaje de EAE involucrado determina el riesgo quirúrgico. Es la más problemática: demasiado EAE comprometido → no se puede seccionar sin incontinencia.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">III</div>
+          <div class="step-content">
+            <div class="step-title">Supraesfinteriana <span class="badge badge-red">~20%</span></div>
+            <div class="step-detail">Rodea todo el complejo esfinteriano por arriba, pasa sobre el puborrectal y baja por la fosa isquioanal. Compleja. Requiere técnicas de preservación esfinteriana.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">IV</div>
+          <div class="step-content">
+            <div class="step-title">Extraesfinteriana <span class="badge badge-red">~5%</span></div>
+            <div class="step-detail">Pasa lateralmente a todo el complejo esfinteriano. Rara. Frecuentemente asociada a enfermedad de Crohn, trauma, cuerpo extraño o iatrogenia.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title teal">Regla de Goodsall (orientación diagnóstica)</div>
+      <p>Con el paciente en posición de litotomía, trazando una línea transversa imaginaria a través del ano:</p>
+      <ul>
+        <li><strong>Orificio externo anterior</strong> a la línea → trayecto recto hacia la cripta más cercana</li>
+        <li><strong>Orificio externo posterior</strong> a la línea → trayecto curvo hacia la cripta posterior en línea media</li>
+      </ul>
+      <div class="highlight teal">Excepción: orificios anteriores a >3 cm del margen anal suelen seguir el patrón posterior (curvo). Útil como orientación, no infalible.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title red">Fístulas complejas — definición y causas</div>
+      <p>Se consideran complejas cuando presentan alguno de:</p>
+      <ul>
+        <li>Involucran &gt;30–50% del EAE (transesfinterianas altas)</li>
+        <li>Anterior en mujer (riesgo de lesión vaginal)</li>
+        <li>Múltiples trayectos</li>
+        <li>Enfermedad de Crohn, VIH, RT previa</li>
+        <li>Recurrencia postoperatoria</li>
+        <li>Incontinencia preexistente</li>
+      </ul>
+      <div class="warning">En fístulas complejas, nunca realizar fistulotomía directa. Requieren técnicas de preservación esfinteriana: sedal de corte, colgajo de avance, LIFT, tapón de colágeno, video-assisted anal fistula treatment (VAAFT).</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title gold">Diagnóstico preoperatorio</div>
+      <ul>
+        <li><strong>Exploración física:</strong> palpación del trayecto (cordón fibroso), localización de orificios interno y externo, tacto rectal</li>
+        <li><strong>Sonda lacrimal/fistuloscopia:</strong> identificación del trayecto en quirófano</li>
+        <li><strong>RMN pélvica:</strong> gold standard para fístulas complejas. Clasifica con precisión el trayecto y relación con esfínteres</li>
+        <li><strong>Ultrasonido endoanal:</strong> buena alternativa, operador-dependiente</li>
+        <li><strong>Fistulografía:</strong> en desuso</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ===== 05 TÉCNICA ===== -->
+  <div id="tecnica" class="section">
+    <div class="section-header">
+      <span class="section-num">05</span>
+      <h2>Técnica quirúrgica</h2>
+    </div>
+
+    <div class="card">
+      <div class="card-title gold">Posición e instalación</div>
+      <ul>
+        <li><strong>Posición:</strong> litotomía (la más frecuente) o navaja de jackknife (decúbito prono con pelvis elevada — preferida por muchos coloproctólogos)</li>
+        <li><strong>Anestesia:</strong> regional (epidural/espinal) o general. Complemento con bloqueo pudendo + infiltración local con lidocaína + epinefrina</li>
+        <li><strong>Preparación:</strong> enema evacuante previo, profilaxis antibiótica (cefalosporina 1ª generación + metronidazol)</li>
+        <li><strong>Material:</strong> retractor anal (Pratt, Hill-Ferguson), sonda lacrimal, seda/hilo para sedal, electrocauterio</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="card-title teal">Fistulotomía (técnica para fístulas simples)</div>
+      <p>La más efectiva para fístulas simples (interesfinterianas, transesfinterianas bajas). Consiste en <strong>abrir el techo del trayecto</strong> en toda su extensión.</p>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">01</div>
+          <div class="step-content">
+            <div class="step-title">Identificación de orificios</div>
+            <div class="step-detail">Localizar orificio externo (frecuentemente visible con secreción). Introducir sonda lacrimal con cuidado desde el orificio externo hacia el canal anal hasta identificar el orificio interno en la cripta correspondiente.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <div class="step-content">
+            <div class="step-title">Inyección de H₂O₂ o azul de metileno</div>
+            <div class="step-detail">Facilita la identificación del orificio interno y ramificaciones del trayecto.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <div class="step-content">
+            <div class="step-title">Sección del techo del trayecto</div>
+            <div class="step-detail">Con bisturí o electrocauterio, se incide el tejido sobre la sonda en toda la longitud del trayecto, convirtiendo la fístula en una herida abierta (lay-open).</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">04</div>
+          <div class="step-content">
+            <div class="step-title">Curetaje del trayecto</div>
+            <div class="step-detail">Eliminar todo el tejido fibroso, granulomatoso e infectado con cureta. En fistulectomía (vs. fistulotomía), se extirpa el trayecto completo en bloque — mayor sangrado, cicatrización más lenta, sin ventaja demostrada sobre la tasa de curación.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">05</div>
+          <div class="step-content">
+            <div class="step-title">Marsupialización de bordes</div>
+            <div class="step-detail">Suturar los bordes de la herida al lecho para reducir el tiempo de cicatrización y facilitar el drenaje. Puntos simples con Vicryl 3-0.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">06</div>
+          <div class="step-content">
+            <div class="step-title">Hemostasia y cierre</div>
+            <div class="step-detail">La herida se deja <strong>abierta</strong> para cicatrización por segunda intención. Apósito con gasa vaselinada o Aquacel en la herida.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title red">Sedal (Seton) — para fístulas complejas</div>
+      <p>Un material (hilo de seda, Penrose, vessel loop) se pasa a través del trayecto fistuloso alrededor del músculo en riesgo. Dos modalidades:</p>
+      <div class="grid-2">
+        <div>
+          <p><strong>Sedal de drenaje (no cortante)</strong></p>
+          <ul>
+            <li>Mantiene el trayecto abierto y drenando</li>
+            <li>Control de la sepsis, no cura la fístula</li>
+            <li>Etapa previa a otro procedimiento definitivo</li>
+            <li>Útil en Crohn, inmunosuprimidos</li>
+          </ul>
+        </div>
+        <div>
+          <p><strong>Sedal de corte (cutting seton)</strong></p>
+          <ul>
+            <li>Se aprieta progresivamente (cada 2–4 semanas)</li>
+            <li>Secciona gradualmente el esfínter → fibrosis progresiva</li>
+            <li>Preserva (parcialmente) la continencia</li>
+            <li>Proceso largo (2–6 meses), incómodo</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title blue">Otras técnicas para fístulas complejas</div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">▸</div>
+          <div class="step-content">
+            <div class="step-title">LIFT (Ligation of Intersphincteric Fistula Tract)</div>
+            <div class="step-detail">Abordaje por el espacio interesfinteriano → ligadura y sección del trayecto en su origen. Preserva esfínteres. Tasa de curación ~60–80%.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">▸</div>
+          <div class="step-content">
+            <div class="step-title">Colgajo de avance mucoso (advancement flap)</div>
+            <div class="step-detail">Se cierra el orificio interno con un colgajo de mucosa/mucosa+músculo. No hay sección esfinteriana. Tasa de curación ~50–70%.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">▸</div>
+          <div class="step-content">
+            <div class="step-title">Tapón biológico (anal fistula plug)</div>
+            <div class="step-detail">Material de colágeno submucosa porcina que se introduce en el trayecto. Poco invasivo pero tasa de fracaso alta a largo plazo (~40–50%).</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">▸</div>
+          <div class="step-content">
+            <div class="step-title">VAAFT (Video-Assisted Anal Fistula Treatment)</div>
+            <div class="step-detail">Fistuloscopia diagnóstica + fulguración del trayecto desde adentro + cierre del orificio interno. Mínimamente invasivo.</div>
+          </div>
+        </div>
+      </div>
+      <div class="warning">La elección de técnica depende siempre de: tipo de fístula (Parks), porcentaje de esfínter comprometido, función esfinteriana basal del paciente, y experiencia del cirujano.</div>
+    </div>
+  </div>
+
+  <!-- ===== 06 POSTOP ===== -->
+  <div id="postop" class="section">
+    <div class="section-header">
+      <span class="section-num">06</span>
+      <h2>Postoperatorio y tratamiento</h2>
+    </div>
+
+    <div class="card">
+      <div class="card-title gold">Indicaciones al alta (cirugía ambulatoria)</div>
+      <ul>
+        <li>Dieta normal desde el primer día (no hay restricción específica)</li>
+        <li>Abundante ingesta de líquidos y fibra (psyllium, Metamucil) para ablandamiento de heces</li>
+        <li>Baños de asiento tibios 3–4 veces al día (10–15 min) + después de cada evacuación</li>
+        <li>Higiene perianal con agua y jabón neutro tras cada evacuación, secar con toque (no frotar)</li>
+        <li>Mantener la herida abierta — no aplicar compresas oclusivas</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="card-title teal">Manejo del dolor</div>
+      <ul>
+        <li><strong>AINE:</strong> ketorolaco 30 mg IV en postop inmediato, luego ibuprofeno 400 mg c/8h VO por 5–7 días</li>
+        <li><strong>Paracetamol:</strong> 500–1000 mg c/6–8h como base</li>
+        <li><strong>Opioides:</strong> evitar si es posible (producen estreñimiento → dificulta cicatrización). Tramadol como rescate</li>
+        <li><strong>Anestésico tópico:</strong> lidocaína gel 2% local antes de la evacuación en los primeros días</li>
+        <li><strong>Nitroglicerina tópica 0.2%:</strong> relaja EAI, reduce el espasmo y el dolor (off-label pero ampliamente usado)</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="card-title red">Antibióticos</div>
+      <p>No son rutinarios en el postoperatorio de fistulectomía simple sin infección activa. Se indican si:</p>
+      <ul>
+        <li>Infección activa o absceso concomitante</li>
+        <li>Inmunosupresión (DM descompensada, VIH, corticoesteroides)</li>
+        <li>Celulitis perianal extensa</li>
+      </ul>
+      <div class="highlight red">Esquema sugerido: amoxicilina-clavulanato 875/125 mg c/12h VO × 7 días, o metronidazol 500 mg c/8h + ciprofloxacino 500 mg c/12h.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title blue">Cuidado de la herida y seguimiento</div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">24h</div>
+          <div class="step-content">
+            <div class="step-title">Primera revisión</div>
+            <div class="step-detail">Verificar hemostasia, signos de hematoma, inicio de baños de asiento.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">1 sem</div>
+          <div class="step-content">
+            <div class="step-title">Control posquirúrgico</div>
+            <div class="step-detail">Valorar inicio de cicatrización, cambio de apósito, revisión de dolor. Inicio de dilataciones digitales si hay tendencia a estenosis.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">4–6 sem</div>
+          <div class="step-content">
+            <div class="step-title">Valoración de cicatrización completa</div>
+            <div class="step-detail">La mayoría de fistulectomías simples cierran en 4–8 semanas. Evaluar continencia fecal.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3 meses</div>
+          <div class="step-content">
+            <div class="step-title">Evaluación de curación / recurrencia</div>
+            <div class="step-detail">Si persiste trayecto, considerar RMN y reintervención. Tasa de recurrencia global: 7–20%.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title gold">Complicaciones a vigilar</div>
+      <div class="grid-2">
+        <div>
+          <p><strong>Tempranas</strong></p>
+          <ul>
+            <li>Sangrado (raro, generalmente autolimitado)</li>
+            <li>Retención urinaria (por dolor/anestesia)</li>
+            <li>Infección de herida / absceso residual</li>
+            <li>Fecaloma</li>
+          </ul>
+        </div>
+        <div>
+          <p><strong>Tardías</strong></p>
+          <ul>
+            <li><strong>Incontinencia</strong> (la más temida — gas, líquidos, sólidos)</li>
+            <li>Recurrencia de la fístula</li>
+            <li>Estenosis anal (cicatrización excesiva)</li>
+            <li>Ectropión mucoso</li>
+          </ul>
+        </div>
+      </div>
+      <div class="warning">La incontinencia postoperatoria es el resultado de lesión esfinteriana inadvertida o deliberada excesiva. Evaluar siempre la función esfinteriana preoperatoria (especialmente en mujeres con partos anteriores, ancianos) y el porcentaje de esfínter comprometido antes de decidir técnica.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title teal">Consideraciones especiales</div>
+      <ul>
+        <li><strong>Enfermedad de Crohn:</strong> no realizar fistulotomía agresiva. Sedal de drenaje + terapia biológica (infliximab). La curación quirúrgica es rara.</li>
+        <li><strong>VIH:</strong> heridas de cicatrización lenta. Priorizar control de la infección, manejo conservador.</li>
+        <li><strong>Fístula rectovaginal:</strong> técnica especial (colgajo de avance, interposición de colgajo de Martius). Alto riesgo de recidiva.</li>
+        <li><strong>Diabetes:</strong> control glucémico estricto perioperatorio. Mayor riesgo de infección y cicatrización lenta.</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<script>
+function show(id, btn) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+</body>
+</html>
